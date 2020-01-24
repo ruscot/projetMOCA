@@ -1,2 +1,2 @@
 # projetMOCA
-Pour le porjet en MOCA
+Voici le git pour le projet de MOCA
