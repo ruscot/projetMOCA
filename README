@@ -1,7 +1,0 @@
-[README]
-
-Utiliser la commande : make CFLAGS=-DDEBUG
-pour activer le debug à partir du Makefile
-
-Utiliser la commande : make CFLAGS=-DN=valeur de n
-pour changer dynamiquement la valeur de N par défaut
