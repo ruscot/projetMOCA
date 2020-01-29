@@ -1,0 +1,9 @@
+Séance 1 (TP2):
+	- Correction de quelques bugs : test si fichier NULL, variables inutilisée et fonctions non déclarée.
+	- Découpage du projet en plusieurs fichiers
+	- Création d'un Makefile
+	- Création du dépot git 
+
+To do :
+	- Mettre des commentaires pour chaques fonctions
+
