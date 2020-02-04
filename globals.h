@@ -3,9 +3,9 @@
 #include "macro.h"
 
 
-char *separators = SEP; 
-unsigned int current_line=1;
-unsigned int current_col=1;
+char *separators;// = SEP; 
+unsigned int current_line;//=1;
+unsigned int current_col;//=1;
 
 
 #endif

@@ -23,7 +23,7 @@ all: $(EXEC)
 ##############################################
 
 #Règles de création de l'exécutables dictionnaire
-dictionnaire: main.o
+dictionnaire: main.o maillon.o wordFunc.o dico.o conversion.o charFunc.o
 	$(CC) main.o -o $@
 
 clean:

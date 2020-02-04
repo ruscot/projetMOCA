@@ -15,6 +15,10 @@
 
 int main(int argc, char* argv[])
 {
+  //Initialisation des variables globals
+  separators = SEP;
+  current_line = 1;
+  current_col = 1;
   //test si bon nombre d'argument
   if (argc < 2){
 	printf("Vous avez oublié le nom du fichier d'entrée : \n\t./%s <NOM_FICHIER>\n", argv[0]);
