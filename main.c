@@ -6,11 +6,11 @@
 #include "dataStruct.h"
 #include "globals.h"
 #include "macro.h"
-#include "dico.c"
-#include "charFunc.c"
-#include "conversion.c"
-#include "maillon.c"
-#include "wordFunc.c"
+#include "dico.h"
+#include "charFunc.h"
+#include "conversion.h"
+#include "maillon.h"
+#include "wordFunc.h"
 
 
 int main(int argc, char* argv[])
@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
   current_col = 1;
   //test si bon nombre d'argument
   if (argc < 2){
-	printf("Vous avez oublié le nom du fichier d'entrée : \n\t./%s <NOM_FICHIER>\n", argv[0]);
+	printf("Vous avez oublié le nom du fichier d'entrée : \n\t%s <NOM_FICHIER>\n", argv[0]);
 	exit(0);
   }
 

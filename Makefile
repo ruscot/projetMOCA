@@ -8,11 +8,16 @@
 ########################################################################
 
 CC=gcc
-CFLAGS=-W -Wall
-LDFLAGS=
+ifdef N
+ CFLAGS=-W -Wall -DN=$(N)
+else
+ CFLAGS=-W -Wall
+endif
+SRCS=$(wildcard *.c)
+OBJS=$(SRCS:.c=.o)
 
 #Nos exécutables
-EXEC=dictionnaire
+EXEC=prog
 
 
 
@@ -23,8 +28,11 @@ all: $(EXEC)
 ##############################################
 
 #Règles de création de l'exécutables dictionnaire
-dictionnaire: main.o maillon.o wordFunc.o dico.o conversion.o charFunc.o
-	$(CC) main.o -o $@
+$(EXEC):$(OBJS)
+	$(CC) $(OBJS) -o $(EXEC)
+
 
 clean:
 	rm -rf *.o
+
+
