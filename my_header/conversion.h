@@ -3,10 +3,7 @@
 #include "dataStruct.h"
 #include "dico.h"
 #include "globals.h"
-#include "macro.h"
-#include "charFunc.h"
-#include "maillon.h"
-#include "wordFunc.h"
+
 
 int charToNum(char c);
 
