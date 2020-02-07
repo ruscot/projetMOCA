@@ -1,8 +1,9 @@
-##################################################
+###############################################################################
 #	Compiler bibliothèque statique -> make LIB=s
 #	Compiler bibliothèque dynamique -> make LIB=d
 #	Par default, compile avec fichier locaux
-##################################################
+#	Rajouter TEST=1 dans la commande pour compiler (En dynamique) avec les tests 
+###############################################################################
 
 INCLUDEDIR_1=my_header
 SRCDIR=my_src
@@ -14,7 +15,11 @@ OBJTESTDIR=$(LIBDIR)/test_obj
 CC=gcc
 SRCS=$(wildcard my_src/*.c)
 OBJS=$(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+ifdef TEST
+CFLAGS=-Wall -I $(INCLUDEDIR_1) -I $(LIBTESTDIR) -g -DTEST=$(TEST)
+else 
 CFLAGS=-Wall -I $(INCLUDEDIR_1) -I $(LIBTESTDIR) -g
+endif
 
 # Objets pour la bibliothèque statique
 OBJ_LIB=$(patsubst my_obj/main.o,,$(OBJS))

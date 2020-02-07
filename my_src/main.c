@@ -13,11 +13,9 @@
 #include "CuTest.h"
 #include "AllTests.h"
 
-#define FINAL 0
-
 int main(int argc, char* argv[])
 {
-  #if FINAL
+  #ifndef TEST
     separators = SEP;
     current_line = 1;
     current_col = 1;
@@ -48,6 +46,6 @@ int main(int argc, char* argv[])
   #else
     RunAllTests();
   #endif
-  
+
   return 0;
 }
