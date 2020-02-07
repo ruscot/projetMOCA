@@ -15,10 +15,9 @@ OBJTESTDIR=$(LIBDIR)/test_obj
 CC=gcc
 SRCS=$(wildcard my_src/*.c)
 OBJS=$(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+CFLAGS=-Wall -I $(INCLUDEDIR_1) -I $(LIBTESTDIR) -g 
 ifdef TEST
-CFLAGS=-Wall -I $(INCLUDEDIR_1) -I $(LIBTESTDIR) -g -DTEST=$(TEST)
-else 
-CFLAGS=-Wall -I $(INCLUDEDIR_1) -I $(LIBTESTDIR) -g
+CFLAGS+=-DTEST=$(TEST)
 endif
 
 # Objets pour la bibliothèque statique
