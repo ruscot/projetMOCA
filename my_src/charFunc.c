@@ -23,6 +23,10 @@ char getCharnum(maillon_t* link, int k) {
   }
 }
 
+
+/* Renvoi 1 si la lettre est comprise entre
+ * a et z
+ * */
 int isAvailable(char c) {
   if (c < 'a' || c > 'z') {
     return 0;
