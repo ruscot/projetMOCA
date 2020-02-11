@@ -6,7 +6,89 @@
 #include "charFunc.h"
 #include "maillon.h"
 #include "dataStruct.h"
+void test_SizeMaillon(CuTest * tc){
+  char entree[40];
+  int bon, resultat;
+  maillon_t* maillon_entree;
 
+  strcpy(entree, "testdetailledechaine");
+  maillon_entree = stringToMaillon(entree);
+  resultat= getSizeMaillon(maillon_entree); 
+  bon = 20;
+  CuAssertIntEquals (tc, bon, resultat);
+
+
+  strcpy(entree, "tes");
+  maillon_entree = stringToMaillon(entree);
+  resultat= getSizeMaillon(maillon_entree); 
+  bon = 3;
+  CuAssertIntEquals (tc, bon, resultat);
+
+  strcpy(entree, "");
+  maillon_entree = stringToMaillon(entree);
+  resultat= getSizeMaillon(maillon_entree); 
+  bon = 0;
+  CuAssertIntEquals (tc, bon, resultat);
+
+  strcpy(entree, "tes ");
+  maillon_entree = stringToMaillon(entree);
+  resultat= getSizeMaillon(maillon_entree); 
+  bon = 3;
+  CuAssertIntEquals (tc, bon, resultat);
+}
+
+void test_compareWord(CuTest * tc){
+  unsigned int* line = (unsigned int*) malloc(sizeof(int));
+  unsigned int* colonne = (unsigned int*) malloc(sizeof(int));
+  * line = 1;
+  * colonne = 1;
+  mot_t* mot, *mot2; 
+  int res;
+
+  char * word = "word";
+  mot = generateMot_t (word, line, colonne);
+  mot2 = generateMot_t (word, line, colonne);
+  res = compareWord(mot, mot2);
+  CuAssertIntEquals (tc, 0, res);
+
+  mot2 = generateMot_t ("wo", line, colonne);
+  res = compareWord(mot, mot2);
+  CuAssertIntEquals (tc, 1, res);
+
+  mot2 = generateMot_t ("wordaze", line, colonne);
+  res = compareWord(mot, mot2);
+  CuAssertIntEquals (tc, -1, res);
+
+  mot = generateMot_t ("", line, colonne);
+  mot2 = generateMot_t ("", line, colonne);
+  res = compareWord(mot, mot2);
+  CuAssertIntEquals (tc, 0, res);
+
+  mot = generateMot_t ("aaaa", line, colonne);
+  mot2 = generateMot_t ("bbbb", line, colonne);
+  res = compareWord(mot, mot2);
+  CuAssertIntEquals (tc, -1, res);
+
+  /*mot = generateMot_t ("a", line, colonne);
+  mot2 = generateMot_t ("b", line, colonne);
+  res = compareWord(mot, mot2);
+  CuAssertIntEquals (tc, -1, res);*/
+
+  mot = generateMot_t ("d", line, colonne);
+  mot2 = generateMot_t ("z", line, colonne);
+  res = compareWord(mot, mot2);
+  CuAssertIntEquals (tc, -1, res);
+
+  mot = generateMot_t ("", line, colonne);
+  mot2 = generateMot_t ("a", line, colonne);
+  res = compareWord(mot, mot2);
+  CuAssertIntEquals (tc, -1, res);
+
+
+
+
+  
+}
 void testStringToMaillonCuTest(CuTest *tc){
 	char *input = strdup("intergouvernementalisations");
 	maillon_t *tmp = stringToMaillon(input);
@@ -76,6 +158,8 @@ CuSuite *MaTestSuite (){
 	CuSuite *suite = CuSuiteNew ();
   	SUITE_ADD_TEST (suite, testStringToMaillonCuTest);
 	SUITE_ADD_TEST (suite, testMaillonSizeCuTest);
+	SUITE_ADD_TEST (suite, test_SizeMaillon);
+	SUITE_ADD_TEST (suite,test_compareWord);
   	return suite;
 }
 
