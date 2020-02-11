@@ -14,6 +14,10 @@ void setCharnum(maillon_t* link, int k, char c) {
   }
 }
 
+
+/*
+ *
+ * */
 char getCharnum(maillon_t* link, int k) {
   if (link == NULL) {
     printf("getCharnum : link null\n");
