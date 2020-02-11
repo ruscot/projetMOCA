@@ -1,6 +1,6 @@
 ###############################################################################
-#	Compiler bibliothèque statique -> make LIB=s
-#	Compiler bibliothèque dynamique -> make LIB=d
+#	Compiler bibliothèque statique -> make LIBS=s
+#	Compiler bibliothèque dynamique -> make LIBS=d
 #	Par default, compile avec fichier locaux
 #	Rajouter TEST=1 dans la commande pour compiler (En dynamique) avec les tests 
 ###############################################################################
@@ -58,14 +58,14 @@ LDFLAGS= -L $(LIBDIR)/ -Wl,-Bdynamic -lDynamique -lTestD
 all: libTestD libD main 
 endif
 
+# Règle générique
+# Créer les fichiers objs des sources des tests dans my_obj/tests
+$(OBJTESTS)/%.o:$(SRCTESTS)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 # Règle générique 
 # Créer les fichiers objs à partir des sources (my_src) dans le répertoire my_obj
 $(OBJDIR)/%.o:$(SRCDIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Règle générique
-# Créer les fichiers objs des sources des tests dans my_obj/tests
-$(OBJTESTS)/%.o:$(SRCTEST)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Compile le programme main avec les fichiers objs (my_obj)
@@ -101,4 +101,4 @@ libTestS: $(OBJ_LIB_TEST)
 	ar r $(LIBDIR)/libTestS.a $(OBJ_LIB_TEST)
 
 clean:
-	rm -f $(OBJDIR)/*.o $(LIBDIR)/*.* $(OBJDIR2)/* $(OBJTESTDIR)/*.*
+	rm -f $(OBJDIR)/*.o $(OBJTESTS)/*.o $(LIBDIR)/*.* $(OBJDIR2)/* $(OBJTESTDIR)/*.*
