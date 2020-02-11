@@ -11,7 +11,7 @@
 #include "maillon.h"
 #include "wordFunc.h"
 #include "CuTest.h"
-#include "AllTests.h"
+#include "tests/AllTests.h"
 
 int main(int argc, char* argv[])
 {
