@@ -12,4 +12,4 @@ Changement effectués :
 
 	- getSizeMaillon ajout de return res
 	- compareWord initialisation de i à 0
-	- 
+	- ajout du separateur ' (macro SEP)

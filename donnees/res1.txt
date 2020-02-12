@@ -1,0 +1,8 @@
+Contenu dictionnaire pour hugo1.txt : 
+a (1,1)
+abstrait (1,3)
+e (2,13)
+on (2,4)
+qu (2,1)
+razer (2,7)
+test (1,12)
