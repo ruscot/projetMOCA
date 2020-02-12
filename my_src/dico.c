@@ -69,7 +69,7 @@ void addToDico(dico* dictionary, char* word, unsigned int* line, unsigned int* c
 
 void displayDico(dico* dictionary) {
   FILE *f = NULL;
-  f = fopen(DICORES, "rw+");
+  f = fopen(DICORES, "w+");
   if (f == NULL){
 	fprintf(stderr,"Le fichier n'existe pas ou n'a pas pu être ouvert en mode lecture/ecriture!!!!!!!!!!!!\n");
 	exit(0);

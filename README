@@ -5,3 +5,11 @@ pour activer le debug à partir du Makefile
 
 Utiliser la commande : make CFLAGS=-DN=valeur de n
 pour changer dynamiquement la valeur de N par défaut
+
+
+
+Changement effectués :
+
+	- getSizeMaillon ajout de return res
+	- compareWord initialisation de i à 0
+	- 
