@@ -2,8 +2,6 @@
 #define _WORDFUNC_H_
 #include "dataStruct.h"
 
-mot_t* generateMot_t (char * word, unsigned int * line, unsigned int *colonne);
-
 char *next_word(FILE *f, unsigned int *nblin, unsigned int *nbcol);
 
 int compareWord(mot_t* w1, mot_t* w2);

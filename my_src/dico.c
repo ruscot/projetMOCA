@@ -54,7 +54,14 @@ void insertDico(dico* dictionary, mot_t* linkWord) {
 }
 
 void addToDico(dico* dictionary, char* word, unsigned int* line, unsigned int* colonne) {
-  mot_t* newLinkWord = generateMot_t (word, line, colonne);
+  mot_t* newLinkWord = (mot_t*) malloc(sizeof(mot_t));
+  emplacement_t* location = (emplacement_t*) malloc(sizeof(emplacement_t));
+  newLinkWord->tete_mot = stringToMaillon(word);
+  newLinkWord->queue_mot = newLinkWord->tete_mot;   
+  location->line = *line;
+  location -> colonne = *colonne;
+  newLinkWord->tete_liste = location;
+  newLinkWord->queue_liste = location;
   if (dictionary == NULL) {  
     dico* newDictionary = (dico*) malloc(sizeof(dico));
     newDictionary->mot = newLinkWord;
@@ -69,7 +76,7 @@ void addToDico(dico* dictionary, char* word, unsigned int* line, unsigned int* c
 
 void displayDico(dico* dictionary) {
   FILE *f = NULL;
-  f = fopen(DICORES, "w+");
+  f = fopen(DICORES, "rw+");
   if (f == NULL){
 	fprintf(stderr,"Le fichier n'existe pas ou n'a pas pu être ouvert en mode lecture/ecriture!!!!!!!!!!!!\n");
 	exit(0);

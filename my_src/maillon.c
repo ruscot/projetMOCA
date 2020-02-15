@@ -6,13 +6,9 @@
 #include "maillon.h"
 #include "charFunc.h"
 
-
-/* La fonction getSizeMaillon doit renvoyer 
- * quoi ?
- * */
 int getSizeMaillon(maillon_t* link) {
   if (link == NULL) {
-	  return 0;
+    return 0;
   } else {
     int i = 0,res = 0;
     maillon_t* useLink = link;
