@@ -53,7 +53,7 @@ $(OBJDIR)/%.o:$(SRCDIR)/%.c
 
 # Compile le programme main avec les fichiers objs (my_obj)
 main:$(OBJS)
-	$(CC) $(OBJDIR)/* -o $@ $(LDFLAGS)
+	$(CC) $(OBJDIR)/*.o -o $@ $(LDFLAGS)
 
 # Créer la librarie statique libStatique.a dans le répertoire my_lib
 libS:$(OBJ_LIB)
@@ -68,6 +68,7 @@ $(OBJDIR2)/%.o: $(SRCDIR)/%.c
 # récupère les fichiers objs dans le répertoire my_lib/lib_obj (OBJ_LIB2)
 libD:$(OBJ_LIB2)
 	$(CC) -shared -o $(LIBDIR)/libDynamique.so $(OBJ_LIB2)
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./my_lib
 
 $(OBJTESTDIR)/%.o: $(LIBTESTDIR)/%.c
 	$(CC) $(CFLAGS) -fPIC -c $< -o $@
