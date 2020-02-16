@@ -11,6 +11,18 @@
 #include "maillon.h"
 #include "wordFunc.h"
 
+mot_t* generateMot_t (char * word, unsigned int * line, unsigned int *colonne){
+  mot_t* newLinkWord = (mot_t*) malloc(sizeof(mot_t));
+  emplacement_t* location = (emplacement_t*) malloc(sizeof(emplacement_t));
+  newLinkWord->tete_mot = stringToMaillon(word);
+  newLinkWord->queue_mot = newLinkWord->tete_mot;   
+  location->line = *line;
+  location -> colonne = *colonne;
+  newLinkWord->tete_liste = location;
+  newLinkWord->queue_liste = location;
+  return newLinkWord;
+}
+
 void displayWord(mot_t* word, FILE *filedes) {
   if (word == NULL) {
   } else {
@@ -75,7 +87,7 @@ int compareWord(mot_t* w1, mot_t* w2) {
     char* word1 = maillonToString(w1->tete_mot);
     char* word2 = maillonToString(w2->tete_mot);
     int minSize = (strlen(word1)<strlen(word2))?strlen(word1):strlen(word2);
-    int i;//,j = 0;
+    int  i = 0;//,j = 0;
     int pos = 0;
     while(i<minSize && pos == 0) {
       pos = (word1[i]<word2[i])?-1:(word1[i]>word2[i])?1:0;
