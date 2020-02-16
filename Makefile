@@ -3,6 +3,8 @@
 #	Compiler bibliotheque dynamique -> make LIBS=d
 #	Par default, compile avec fichier locaux
 #	Rajouter TEST=1 dans la commande pour compiler (En dynamique) avec les tests 
+#	AFL source ~mounlaur/installe_afl.sh
+# 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./my_lib
 ###############################################################################
 
 INCLUDEDIR_1=my_header
@@ -22,6 +24,10 @@ SRCSTESTS=$(wildcard $(SRCTESTS)/*.c)
 OBJSTESTS=$(SRCSTESTS:$(SRCTESTS)/%.c=$(OBJTESTS)/%.o)
 
 CC=gcc
+ifdef AFL
+CC=afl-gcc
+endif
+
 SRCS=$(wildcard $(SRCDIR)/*.c)
 OBJS=$(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
@@ -54,12 +60,12 @@ LIBS=s
 ifeq ($(LIBS),s)
 LDFLAGS= -L $(LIBDIR)/ -static -lStatique -lTestS
 # On compile seulement la partie statique
-all: libTestS libS main
+all:libTestS libS main
 endif
 ifeq ($(LIBS),d)
 LDFLAGS= -L $(LIBDIR)/ -Wl,-Bdynamic -lDynamique -lTestD
 # On compile seulement la partie dynamique
-all: libTestD libD main 
+all:libTestD libD main 
 endif
 
 LDFLAGS += -lgcov --coverage
@@ -75,11 +81,11 @@ $(OBJTESTS)/%.o:$(SRCTESTS)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Compile le programme main avec les fichiers objs (my_obj)
-main:$(OBJS) $(OBJSTESTS)
+main : $(OBJS) $(OBJSTESTS)
 	$(CC) $(OBJTESTS)/*.o $(OBJDIR)/*.o -o $@ $(LDFLAGS)
 
 # Creer la librarie statique libStatique.a dans le repertoire my_lib
-libS:$(OBJ_LIB)
+libS : $(OBJ_LIB)
 	ar r $(LIBDIR)/libStatique.a $(OBJ_LIB)
 
 # Regle generique
@@ -114,6 +120,7 @@ rungcov:
 	gcov -b -c $(SRCS) -o $(OBJDIR)/
 	gcov -b -c $(SRCSTESTS) -o $(OBJTESTS)/
 	mv *.gcov $(TESTCOUV)
+
 
 clean:
 	rm -f main $(OBJDIR)/*.* $(OBJTESTS)/*.* $(LIBDIR)/*.* $(OBJDIR2)/* $(OBJTESTDIR)/*.* $(TESTCOUV)/*.*

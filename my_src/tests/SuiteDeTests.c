@@ -73,11 +73,12 @@ void test_compareWord(CuTest * tc){
   mot2 = generateMot_t ("b", line, colonne);
   res = compareWord(mot, mot2);
   CuAssertIntEquals (tc, -1, res);
+  
 
-  mot = generateMot_t ("d", line, colonne);
-  mot2 = generateMot_t ("z", line, colonne);
+  mot = generateMot_t ("z", line, colonne);
+  mot2 = generateMot_t ("a", line, colonne);
   res = compareWord(mot, mot2);
-  CuAssertIntEquals (tc, -1, res);
+  CuAssertIntEquals (tc, 1, res);
 
   mot = generateMot_t ("", line, colonne);
   mot2 = generateMot_t ("a", line, colonne);

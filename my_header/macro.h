@@ -3,7 +3,7 @@
 
 #define SizeLetter 5
 #define maxSizeWord 25
-#define SEP " ,.-'"   
+#define SEP " ;:/,.-'"   
 
 #define TEXTE "hugo1.txt"
 #define DICORES "donnees/res1.txt"
