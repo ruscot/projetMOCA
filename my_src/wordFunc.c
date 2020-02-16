@@ -64,7 +64,7 @@ char* next_word(FILE* f, unsigned int* nblin, unsigned int* nbcol) {
     //printf("char : %c\n",s[i]);
     if (!islower(s[i])) {
       //bad_char = 1;
-      fprintf(stderr, "Mauvais caractère lu\n");
+      fprintf(stderr, "Mauvais caractère lu %c\n",s[i]);
       exit(1);
     }
     i++;
