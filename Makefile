@@ -13,8 +13,6 @@ OBJDIR=my_obj
 LIBDIR=my_lib
 TESTCOUV=test_couverture
 SETUPAFL=setup_afl
-LDD := $(shell printenv LD_LIBRARY_PATH)
-LD_PATH := export LD_LIBRARY_PATH=./$(LIBDIR):$(LDD)
 
 LIBTESTDIR=$(LIBDIR)/test_lib
 OBJTESTDIR=$(LIBDIR)/test_obj
@@ -69,6 +67,7 @@ all: libTestS libS main
 endif
 ifeq ($(LIBS),d)
 
+# On utilise l'option -rpath pour mettre à jour la variable d'environnement LD_LIBRARY_PATH
 LDFLAGS= -L $(LIBDIR)/ -Wl,-rpath,./$(LIBDIR) -Bdynamic -lDynamique -lTestD
 # On compile seulement la partie dynamique
 all: libTestD libD main 
@@ -117,7 +116,6 @@ $(OBJTESTDIR)/%.o: $(LIBTESTDIR)/%.c
 # NE PAS OUBLIER LE "-lgcov" SINON IMPOSSIBLE DE COMPILER
 libTestD: $(OBJ_LIB_TEST)
 	$(CC) -shared -o $(LIBDIR)/libTestD.so $(OBJ_LIB_TEST) -lgcov
-	# Configure la variable d'environnement LD_LIBRARY_PATH
 	
 
 # Creer la librarie statique libTestS.a dans le repertoire my_lib
