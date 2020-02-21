@@ -55,11 +55,13 @@ void insertDico(dico* dictionary, mot_t* linkWord) {
 
 void addToDico(dico* dictionary, char* word, unsigned int* line, unsigned int* colonne) {
   mot_t* newLinkWord = generateMot_t (word, line, colonne);
-  if (dictionary == NULL) {  
-    dico* newDictionary = (dico*) malloc(sizeof(dico));
+  if (dictionary == NULL) {
+    dico *newDictionary = (dico*) malloc(sizeof(dico));
+
     newDictionary->mot = newLinkWord;
     newDictionary->next = NULL;
     dictionary = newDictionary;
+
   } else if (dictionary->mot == NULL) {
     dictionary->mot = newLinkWord;
   } else {

@@ -35,8 +35,12 @@ int main(int argc, char* argv[])
 
     unsigned int* line = (unsigned int*) malloc(sizeof(int));
     unsigned int* colonne = (unsigned int*) malloc(sizeof(int));
+
     char* word = (char*) malloc(sizeof(char)*maxSizeWord);
     dico* dictionary = (dico*) malloc(sizeof(dico));
+
+    dictionary->mot = NULL;
+
     while(!feof(f)) {
       word = next_word(f,line,colonne); 
       addToDico(dictionary,word,line,colonne); 

@@ -39,7 +39,7 @@ char* maillonToString(maillon_t* link) {
   if (link == NULL) {
     return NULL;
   } else {
-    char* word = (char*) malloc(sizeof(char)*getSizeMaillon(link)+1);
+    char* word = (char*) malloc(sizeof(char)*getSizeMaillon(link)+2);
     maillon_t* useLink = link;
     int index = 0, i = 0;
     while (useLink != NULL) {

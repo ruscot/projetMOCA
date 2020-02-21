@@ -5,7 +5,7 @@
 #define maxSizeWord 25
 #define SEP " ;:/,.-'?!"   
 
-#define TEXTE "hugo1.txt"
+#define TEXTE "hugo.txt"
 #define DICORES "donnees/res1.txt"
 
 #endif
