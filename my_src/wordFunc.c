@@ -12,7 +12,6 @@
 #include "maillon.h"
 #include "wordFunc.h"
 
-/*
 mot_t* initMot(){
   mot_t* mot = (mot_t*) malloc(sizeof(mot_t));
   mot->tete_mot = initMaillon();
@@ -20,7 +19,7 @@ mot_t* initMot(){
   mot->tete_liste = initEmplacement();
   mot->queue_liste = initEmplacement();
   return mot;
-}*/
+}
 
 mot_t* generateMot_t(char* word, unsigned int* line, unsigned int* colonne) {
   mot_t* newLinkWord = (mot_t*)malloc(sizeof(mot_t));
