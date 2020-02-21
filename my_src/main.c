@@ -38,8 +38,9 @@ int main(int argc, char* argv[])
 
     char* word = (char*) malloc(sizeof(char)*maxSizeWord);
     dico* dictionary = (dico*) malloc(sizeof(dico));
-
     dictionary->mot = NULL;
+    //dictionary->mot->tete_mot = NULL;
+    dictionary->next = NULL;
 
     while(!feof(f)) {
       word = next_word(f,line,colonne); 

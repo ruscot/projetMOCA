@@ -4,6 +4,7 @@
 #include "dico.h"
 #include "globals.h"
 
+//emplacement_t* initEmplacement();
 
 void setCharnum(maillon_t* link, int k, char c);
 

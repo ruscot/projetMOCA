@@ -12,6 +12,16 @@
 #include "maillon.h"
 #include "wordFunc.h"
 
+/*
+mot_t* initMot(){
+  mot_t* mot = (mot_t*) malloc(sizeof(mot_t));
+  mot->tete_mot = initMaillon();
+  mot->queue_mot = initMaillon();
+  mot->tete_liste = initEmplacement();
+  mot->queue_liste = initEmplacement();
+  return mot;
+}*/
+
 mot_t* generateMot_t(char* word, unsigned int* line, unsigned int* colonne) {
   mot_t* newLinkWord = (mot_t*)malloc(sizeof(mot_t));
   emplacement_t* location = (emplacement_t*)malloc(sizeof(emplacement_t));
@@ -37,8 +47,8 @@ void displayWord(mot_t* word, FILE* filedes) {
       fprintf(filedes, " (%i,%i)", list->line, list->colonne);
       list = list->next;
     }
-    free(link);
-    free(list);
+    //free(link);
+    //free(list);
   }
 }
 

@@ -6,10 +6,14 @@
 #include "maillon.h"
 #include "charFunc.h"
 
+/*
+maillon_t* initMaillon(){
+  maillon_t* m = (maillon_t*) malloc(sizeof(maillon_t));
+  m->elem = 0;
+  m->next = NULL;
+  return m;
+}*/
 
-/* La fonction getSizeMaillon doit renvoyer 
- * quoi ?
- * */
 int getSizeMaillon(maillon_t* link) {
   if (link == NULL) {
 	  return 0;

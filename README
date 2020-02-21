@@ -23,3 +23,7 @@ Changement effectués :
 	- compareWord initialisation de i à 0
 	- ajout de separateurs (macro SEP)
 	- next_word arrete le prg si char non lowercase 
+
+Utilisation de Valgrind :
+	- valgrind ./main <FICHIER>
+	- valgrind --log-file=problems ./main <FICHIER>

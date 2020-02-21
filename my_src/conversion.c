@@ -39,16 +39,18 @@ char* maillonToString(maillon_t* link) {
   if (link == NULL) {
     return NULL;
   } else {
+    //+2 for the last char
     char* word = (char*) malloc(sizeof(char)*getSizeMaillon(link)+2);
+    ///word = NULL;
     maillon_t* useLink = link;
     int index = 0, i = 0;
     while (useLink != NULL) {
       for(i=0;i<=5;i++) {
-	if (isAvailable(getCharnum(useLink,i)) == 0) {break;}
-	else {
-	  word[index] = getCharnum(useLink,i);
-	  index++;
-	}
+	      if (isAvailable(getCharnum(useLink,i)) == 0) {break;}
+	      else {
+	        word[index] = getCharnum(useLink,i);
+	        index++;
+	      }
       }
       useLink = useLink->next;
     }

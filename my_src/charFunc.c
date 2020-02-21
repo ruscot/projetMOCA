@@ -5,7 +5,15 @@
 
 #include "charFunc.h"
 
-
+/*
+emplacement_t* initEmplacement(){
+  emplacement_t* em = (emplacement_t*) malloc(sizeof(emplacement_t));
+  em->line = 0;
+  em->colonne = 0;
+  em->next = NULL;
+  return em;
+}
+*/
 void setCharnum(maillon_t* link, int k, char c) {
   if (link == NULL) {
     printf("setCharnum : link null\n");

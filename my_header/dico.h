@@ -9,6 +9,8 @@
 #include "maillon.h"
 #include "wordFunc.h"
 
+//dico* initDico();
+
 void addToDico(dico* dictionary, char* word, unsigned int* line, unsigned int* colonne);
 
 void displayDico(dico* dictionary);

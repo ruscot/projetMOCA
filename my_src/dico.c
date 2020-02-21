@@ -4,6 +4,14 @@
 #include <stdint.h>
 #include "dico.h"
 
+/*
+dico* initDico(){
+  dico* dictionary = (dico*) malloc(sizeof(dico));
+  dictionary->mot = initMot();
+  dictionary->next = NULL;
+  return dictionary;
+}*/
+
 unsigned int getMask(int k) {
   switch(k) {
   case 0:
