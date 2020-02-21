@@ -1,7 +1,8 @@
 #!/bin/bash
 selection(){
 	echo "####################################"
-	echo "#	   -AFL	   -Valgrind	   #"
+	echo "#	   -AFL	    -Valgrind	   #"
+	echo "#	   -ASan    -Klee          #"
 	echo "#		-Quit		   #"
 	echo "####################################"
 	echo
@@ -36,6 +37,14 @@ Valgrind_prog(){
 	esac
 }
 
+ASan_prog(){
+	echo "a faire ASan"
+}
+
+Klee_prog(){
+	echo "a faire Klee"
+}
+
 
 val_ret=""
 while [[ $val_ret != "Quit" ]]
@@ -50,6 +59,12 @@ do
 			echo " Statique - s	Dynamique - d "
 			read option
 			Valgrind_prog $option
+		;;
+		ASan)
+			ASan_prog
+		;;
+		Klee)
+			Klee_prog
 		;;
 		Quit);;
 		*)
