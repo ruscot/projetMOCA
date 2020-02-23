@@ -1,10 +1,11 @@
 #!/bin/bash
 selection(){
-	echo "####################################"
-	echo "#	   -AFL	    -Valgrind	   #"
-	echo "#	   -ASan    -Klee          #"
-	echo "#		-Quit		   #"
-	echo "####################################"
+	echo "#########################################"
+	echo "#	   -AFL	    	-Valgrind	#"
+	echo "#	   -ASan    	-Klee    	#"
+	echo "#	   -Test_Unit   -ALL	 	#"
+	echo "#		  -Quit		 	#"
+	echo "#########################################"
 	echo
 	echo "Saisir le mode de debug :"
 	read saisie
@@ -19,10 +20,10 @@ AFL_prog(){
 }
 
 Valgrind_prog(){
+	echo "Selectionnez un nom de fichier :"
 	echo "-------------------------------------------------------------------------------------------------------------------------------------------------"
 	ls donnees
 	echo "-------------------------------------------------------------------------------------------------------------------------------------------------"
-	echo "Nom du fichier :"
 	read fichier
 	make clean
 	case $1 in
@@ -44,8 +45,31 @@ ASan_prog(){
 Klee_prog(){
 	echo "a faire Klee"
 }
-
-
+Test_unitaire(){
+	make clean
+	make LIBS=d TEST=1
+	./main
+}
+affiche(){
+	echo "################################################################################"
+	echo "			Programme executé : $1 "
+	echo "################################################################################"
+}
+All_prog(){
+	affiche Valgrind
+		echo "Choisir option de linkage de la bibliothèque"
+		echo " Statique - s	Dynamique - d "
+		read option
+		Valgrind_prog $option
+	affiche ASan
+		ASan_prog
+	affiche Klee
+		Klee_prog
+	affiche Test_Unitaire
+		Test_unitaire
+	affiche AFL
+		AFL_prog
+}
 val_ret=""
 while [[ $val_ret != "Quit" ]]
 do
@@ -65,6 +89,12 @@ do
 		;;
 		Klee)
 			Klee_prog
+		;;
+		Test_Unit)
+			Test_unitaire
+		;;
+		ALL)
+			All_prog
 		;;
 		Quit);;
 		*)
