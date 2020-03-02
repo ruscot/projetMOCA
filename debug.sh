@@ -20,20 +20,26 @@ AFL_prog(){
 }
 
 Valgrind_prog(){
-	echo "Selectionnez un nom de fichier :"
-	echo "-------------------------------------------------------------------------------------------------------------------------------------------------"
-	ls donnees
-	echo "-------------------------------------------------------------------------------------------------------------------------------------------------"
-	read fichier
 	make clean
 	case $1 in
-		d)
-		make LIBS=d DEBUG=1
-		valgrind --log-file=Resultat_valgrind/Resultat_Dynamique.txt ./main donnees/$fichier
+		d | s)
+			make LIBS=$1 DEBUG=1
+			if [ $1 == d ]
+			then
+				valgrind --log-file=Resultat_valgrind/Resultat_Dynamique.txt ./main donnees/$2
+			else
+				valgrind --log-file=Resultat_valgrind/Resultat_Statique.txt ./main donnees/$2
+			fi
 		;;
-		s)
-		make LIBS=s DEBUG=1
-		valgrind --log-file=Resultat_valgrind/Resultat_Statique.txt ./main donnees/$fichier
+		a)
+			make LIBS=s DEBUG=1
+			valgrind --log-file=Resultat_valgrind/Resultat_Statique.txt ./main donnees/$2
+			make clean
+			make LIBS=d DEBUG=1
+			valgrind --log-file=Resultat_valgrind/Resultat_Dynamique.txt ./main donnees/$2
+		;;
+		*)
+			echo "Option : $1 non connu"
 		;;
 	esac
 }
@@ -55,12 +61,20 @@ affiche(){
 	echo "			Programme executé : $1 "
 	echo "################################################################################"
 }
+option_valgrind(){
+	echo "Choisir option de linkage de la bibliothèque"
+	echo " Statique - s	Dynamique - d Les deux modes - a "
+	read option
+	echo "Selectionnez un nom de fichier :"
+	echo "-------------------------------------------------------------------------------------------------------------------------------------------------"
+	ls donnees
+	echo "-------------------------------------------------------------------------------------------------------------------------------------------------"
+	read fichier
+}
 All_prog(){
 	affiche Valgrind
-		echo "Choisir option de linkage de la bibliothèque"
-		echo " Statique - s	Dynamique - d "
-		read option
-		Valgrind_prog $option
+		option_valgrind
+		Valgrind_prog $option $fichier
 	affiche ASan
 		ASan_prog
 	affiche Klee
@@ -79,10 +93,8 @@ do
 			AFL_prog
 		;;
 		Valgrind)
-			echo "Choisir option de linkage de la bibliothèque"
-			echo " Statique - s	Dynamique - d "
-			read option
-			Valgrind_prog $option
+			option_valgrind
+			Valgrind_prog $option $fichier
 		;;
 		ASan)
 			ASan_prog
