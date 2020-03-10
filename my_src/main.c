@@ -37,11 +37,10 @@ int main(int argc, char* argv[])
     unsigned int* colonne = (unsigned int*) malloc(sizeof(int));
 
     char* word = (char*) malloc(sizeof(char)*maxSizeWord);
-    dico* dictionary = initDico();
-    /*(dico*) malloc(sizeof(dico));
+    dico* dictionary = (dico*) malloc(sizeof(dico));
     dictionary->mot = NULL;
     //dictionary->mot->tete_mot = NULL;
-    dictionary->next = NULL;*/
+    dictionary->next = NULL;
 
     while(!feof(f)) {
       word = next_word(f,line,colonne); 
@@ -49,6 +48,7 @@ int main(int argc, char* argv[])
     }
     displayDico(dictionary);
     fclose(f);
+    free(word);
   #else
     RunAllTests();
   #endif
