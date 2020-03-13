@@ -46,8 +46,8 @@ void displayWord(mot_t* word, FILE* filedes) {
       fprintf(filedes, " (%i,%i)", list->line, list->colonne);
       list = list->next;
     }
-    //free(link);
-    //free(list);
+    free(link);
+    free(list);
   }
 }
 
@@ -147,4 +147,6 @@ void incWord(emplacement_t* location, unsigned int line, unsigned int colonne) {
     tempLocation = tempLocation->next;
   }
   tempLocation->next = newLocation;
+  //free(newLocation);
+  //free(tempLocation);
 }

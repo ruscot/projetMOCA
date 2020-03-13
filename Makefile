@@ -5,6 +5,9 @@
 #	Rajouter TEST=1 dans la commande pour compiler (En dynamique) avec les tests 
 #	AFL source ~mounlaur/installe_afl.sh
 # 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./my_lib
+#	COV pour test couverture
+#	KLEE 
+#	ASAN
 ###############################################################################
 
 INCLUDEDIR_1=my_header
@@ -27,14 +30,22 @@ OBJSTESTS=$(SRCSTESTS:$(SRCTESTS)/%.c=$(OBJTESTS)/%.o)
 
 CC=gcc
 
+
+
 ifdef AFL
 CC=afl-gcc
+endif
+
+ifdef KLEE
+CC=wllvm
 endif
 
 SRCS=$(wildcard $(SRCDIR)/*.c)
 OBJS=$(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
-CFLAGS=-Wall -I $(INCLUDEDIR_1) -I $(INCLUDETESTS) -I $(LIBTESTDIR) -fprofile-arcs -ftest-coverage
+CFLAGS=-Wall -I $(INCLUDEDIR_1) -I $(INCLUDETESTS) -I $(LIBTESTDIR) 
+
+
 
 ifdef TEST
 CFLAGS+= -DTEST=$(TEST)
@@ -73,7 +84,16 @@ LDFLAGS= -L $(LIBDIR)/ -Wl,-rpath,./$(LIBDIR) -Bdynamic -lDynamique -lTestD
 all: libTestD libD main 
 endif
 
+ifdef COV
+CFLAGS+=-fprofile-arcs -ftest-coverage
 LDFLAGS += -lgcov --coverage
+endif
+
+ifdef ASAN
+LDFLAGS += -fsanitize=address -g
+endif
+
+
 
 # Regle generique 
 # Creer les fichiers objs a partir des sources (my_src) dans le repertoire my_obj
