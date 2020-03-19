@@ -23,6 +23,51 @@ pour changer dynamiquement la valeur de N par défaut
 
 
 Changements effectués :
+	TP2 :
+En compilant le programme « dico.c » nous obtenons les warnings suivants :
+
+	- warning : implicit declaration of function ‘setCharnum’
+	- warning : conflicting types for ‘setCharnum ‘
+
+	Ces deux warnings sont liés,ils proviennent de la déclaration de la fonction ‘setCharnum ‘ qui est utilisée dans une fonction située avant la définition de ‘setCharnum’. Pour régler le problème il suffit de déplacer la définition de la fonction ‘setCharnum’ avant les fonctions qu’ils l’utilisent.
+
+	- In function ‘compareWord’:
+	  warning : unused variable ‘j’
+		int i, j = 0;
+	Nous l'avons remplacé par ça :
+		int i; //j = 0; »
+
+
+	- In function ‘getSizeMaillon’:
+	dico.c:175:1: warning: control reaches end of non-void function
+
+	Ce warning provient du fait que la fonction ‘getSizeMaillon’ est censé retourner un int et que dans la condition « else » aucune valeur n’est retournée.
+	Nous avons donc retourné la valeur de res. Ajout dde la ligne return res;
+
+
+	-2 : En exécutant le programme dico nous observons une erreur de segmentation.
+	En suivant le trace de gdb nous remarquons que le programme tente d’ouvrir un fichier qui n’existe pas en l’occurrence « dictionnaires.txt » dans la fonction « displayDico ». 
+	Pour régler le problème nous avons rajouté une condition pour vérifier que le descripteur de fichier n’est pas null et dans le cas où il le serait afficher un message d’erreur et quitter le programme avec « exit(0) ; ».
+	if (f == NULL){
+       		fprintf(stderr,"Le fichier n'existe pas ou n'a pas pu être ouvert en mode lecture/ecriture\n");
+        		exit(0);
+  	}
+
+
+	-3 : Pour pouvoir passer le nom du fichier d’entrée en paramètre nous avons modifié la fonction main avec cette nouvelle définition : int main(int argc, char* argv[])
+	Une fois dans le main nous vérifions au début que l’utilisateur n’a pas oublié de donner le nom du fichier en paramètre, sinon on quitte le programme. 
+	if (argc < 2){
+        		printf("Vous avez oublié le nom du fichier d'entrée : \n\t./%s <NOM_FICHIER>\n", argv[0]);
+        		exit(0);
+  	}
+	Ensuite on vérifie que le fichier passé en paramètre est valide, et qu’on puisse le lire, dans le cas contraire on quitte le programme en affichant un message d’erreur.
+	f = fopen(argv[1], "r");
+  	if (f == NULL){
+       		fprintf(stderr,"Le fichier n'existe pas ou n'a pas pu être ouvert en mode lecture/ecriture\n");
+        		exit(0);
+  	}
+
+
 	TP4 : tests
 	- getSizeMaillon ajout de return res
 	- compareWord initialisation de i à 0
