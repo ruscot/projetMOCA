@@ -237,6 +237,7 @@ En compilant le programme « dico.c » nous obtenons les warnings suivants :
 	
 	TP6 :
 		Klee nous a trouvé une erreur de type "Error: memory error: out of bound pointer" mais nous n'avons pas réussi à la corriger.
+		Asan nous renvoie une segmentationFault que nous n'avons pas réussi à corriger non plus.
 
 Utilisation de Valgrind :
 	- valgrind ./main <FICHIER>
