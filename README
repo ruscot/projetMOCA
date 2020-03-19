@@ -23,8 +23,8 @@ pour changer dynamiquement la valeur de N par défaut
 #	AFL=1 pour le fuzzing
 #	Pour Klee, source ~monniaud/env.sh dans le terminal
 #	KLEE=1 pour utliser KLEE
-#	ASAN=1 pour utiliser ASAN
-
+#	ASAN=1 pour utiliser ASAN et il faut lancer en dynamique
+#	Pour le lancer en mode debug DEBUG=1
 
 Arborescence :
 .
@@ -236,6 +236,7 @@ En compilant le programme « dico.c » nous obtenons les warnings suivants :
 	Plus aucune erreur décetée par Fuzzing
 	
 	TP6 :
+		Klee nous a trouvé une erreur de type "Error: memory error: out of bound pointer" mais nous n'avons pas réussi à la corriger.
 
 Utilisation de Valgrind :
 	- valgrind ./main <FICHIER>
@@ -249,4 +250,4 @@ Utilisation de Valgrind :
     	dictionary->next = NULL;
 	
 	Nous n'avons pas réussi à corriger l'erreur : 
-	wordFunc.c : compareWord(), word1 et word2 sont mal initialisé, l'erreur provient peut être de maillonToString()
+	wordFunc.c : compareWord(), word1 et word2 sont mal initialisés, l'erreur provient peut être de maillonToString()
