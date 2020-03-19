@@ -19,6 +19,7 @@ pour changer dynamiquement la valeur de N par défaut
 #	AFL source ~mounlaur/installe_afl.sh
 # 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./my_lib
 #	COV=1 pour test couverture
+#	make rungcov pour lancer gcov
 #	AFL=1 pour le fuzzing
 #	Pour Klee, source ~monniaud/env.sh dans le terminal
 #	KLEE=1 pour utliser KLEE
@@ -35,8 +36,8 @@ Arborescence :
 │   │   ├── id:000000,sig:11,src:000000,op:flip1,pos:445
 │   │   ├── id:000001,sig:11,src:000000,op:flip2,pos:444
 │   │   .
-│   │   	.
-│   │   	.
+│   │   .
+│   │   .
 │   │   ├── id:000035,sig:11,src:000000,op:havoc,rep:128
 │   │   └── README.txt
 │   ├── fuzz_bitmap
@@ -223,17 +224,29 @@ En compilant le programme « dico.c » nous obtenons les warnings suivants :
 
 
 	TP4 : tests
-	- getSizeMaillon ajout de return res, maillon.c
-	- compareWord initialisation de i à 0, wordFunc.c
-	- ajout de separateurs (macro SEP), macro.h
+	- maillon.c : getSizeMaillon() ajout de return res
+	- wordFunc.c : compareWord() initialisation de i à 0
+	-  macro.h : ajout de separateurs (macro SEP)
 	On n'a pas réussi à corriger l'erreur : suivant le premiers mot ajouté, 
-	les mots suivants qui sont avant dans l'odre lexicographique ne sont pas ajouté au dictionnaire (insertDico ?), dico.c
+	les mots suivants qui sont avant dans l'odre lexicographique ne sont pas ajouté au dictionnaire (insertDico() ?), dico.c
 	
 	TP5 : fuzzing
-	- next_word arrete le prg si le char est non lowercase, wordFunc.c
-	- ajout de separateurs supplémentaires (macro SEP), macro.h
+	- wordFunc.c: next_word() arrete le prg si le char est non lowercase
+	-  macro.h : ajout de separateurs supplémentaires (macro SEP)
 	Plus aucune erreur décetée par Fuzzing
+	
+	TP6 :
 
 Utilisation de Valgrind :
 	- valgrind ./main <FICHIER>
 	- valgrind --log-file=problems ./main <FICHIER>
+	
+	Correction : 
+	//+2 for the last char
+	conversion.c : maillonToString() char* word = (char*) malloc(sizeof(char)*getSizeMaillon(link)+2);
+	main.c : initialisation 
+	dictionary->mot = NULL;
+    	dictionary->next = NULL;
+	
+	Nous n'avons pas réussi à corriger l'erreur : 
+	wordFunc.c : compareWord(), word1 et word2 sont mal initialisé, l'erreur provient peut être de maillonToString()
