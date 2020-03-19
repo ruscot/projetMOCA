@@ -1,4 +1,10 @@
-[README]
+[README]				MOCA
+Noel-Lardin Thomas			Résumé
+Lang Hoai
+Moissonnier Shane
+Martinez Anthony
+
+MAKEFILE : 
 
 Utiliser la commande : make CFLAGS=-DDEBUG
 pour activer le debug à partir du Makefile
@@ -66,18 +72,28 @@ En compilant le programme « dico.c » nous obtenons les warnings suivants :
        		fprintf(stderr,"Le fichier n'existe pas ou n'a pas pu être ouvert en mode lecture/ecriture\n");
         		exit(0);
   	}
+	
+	-Déclaration de variables globales dans global.h :
+		separators;
+		current_line;
+		current_col;
+	 Initialisation dans main.c :
+	 	separators = SEP;
+    		current_line = 1;
+    		current_col = 1;
 
 
 	TP4 : tests
-	- getSizeMaillon ajout de return res
-	- compareWord initialisation de i à 0
-	- ajout de separateurs (macro SEP)
+	- getSizeMaillon ajout de return res, maillon.c
+	- compareWord initialisation de i à 0, wordFunc.c
+	- ajout de separateurs (macro SEP), macro.h
 	On n'a pas réussi à corriger l'erreur : suivant le premiers mot ajouté, 
-	les mots suivants qui sont avant dans l'odre lexicographique ne sont pas ajouté au dictionnaire (insertDico ?)
+	les mots suivants qui sont avant dans l'odre lexicographique ne sont pas ajouté au dictionnaire (insertDico ?), dico.c
 	
 	TP5 : fuzzing
-	- next_word arrete le prg si le char est non lowercase 
-	- ajout de separateurs supplémentaires (macro SEP)
+	- next_word arrete le prg si le char est non lowercase, wordFunc.c
+	- ajout de separateurs supplémentaires (macro SEP), macro.h
+	Plus aucune erreur décetée par Fuzzing
 
 Utilisation de Valgrind :
 	- valgrind ./main <FICHIER>
