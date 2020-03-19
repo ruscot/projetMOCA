@@ -25,7 +25,146 @@ pour changer dynamiquement la valeur de N par défaut
 #	ASAN=1 pour utiliser ASAN
 
 
-
+Arborescence :
+.
+├── afl_in //fichier texte utilisé par AFL pour faire ses tests
+│   ├── hugo.txt
+│   └── orwell.txt
+├── afl_out //dossier contenant les résultats d’AFL
+│   ├── crashes //problèmes trouvés
+│   │   ├── id:000000,sig:11,src:000000,op:flip1,pos:445
+│   │   ├── id:000001,sig:11,src:000000,op:flip2,pos:444
+│   │   .
+│   │   	.
+│   │   	.
+│   │   ├── id:000035,sig:11,src:000000,op:havoc,rep:128
+│   │   └── README.txt
+│   ├── fuzz_bitmap
+│   ├── fuzzer_stats
+│   ├── plot_data
+│   └── queue
+│     	.
+│       ├── id:000184,src:000000,op:havoc,rep:128
+│       └── id:000185,src:000000,op:havoc,rep:128
+├── debug.sh //script bash pour automatiser les tests
+├── dictionnaires.txt //Fichier de sortie contenant le dictionnaire créé
+├── donnees //dossier contenant tous nos fichiers textes pour les tests
+│   ├── diction.txt
+│   ├── fic1.txt
+│   ├── hugo1.txt
+│   ├── hugo.txt
+│   ├── or1.txt
+│   ├── orwell.txt
+│   ├── res1.txt
+│   └── wells.txt
+├── main //Exécutable 
+├── Makefile
+├── my_header //Dossier contenant tous les .h
+│   ├── AllTests.h
+│   ├── charFunc.h
+│   ├── conversion.h
+│   ├── dataStruct.h
+│   ├── dico.h
+│   ├── globals.h
+│   ├── macro.h
+│   ├── maillon.h
+│   ├── tests
+│   │   └── AllTests.h
+│   └── wordFunc.h
+├── my_lib //Dossier contenant les bibliothèques statique et dynamique
+│   ├── lib_obj
+│   ├── test_lib
+│   │   ├── CuTest.c
+│   │   └── CuTest.h
+│   └── test_obj
+├── my_obj // Dossier contenant les fichiers pour les tests de couverture
+│   └── tests
+│       ├── AllTests.gcda
+│       ├── AllTests.gcno
+│       ├── AllTests.o
+│       ├── SuiteDeTests.gcda
+│       ├── SuiteDeTests.gcno
+│       └── SuiteDeTests.o
+├── my_src //Dossier avec tous les fichiers sources
+│   ├── charFunc.c
+│   ├── conversion.c
+│   ├── dico.c
+│   ├── maillon.c
+│   ├── main.c
+│   ├── tests
+│   │   ├── AllTests.c
+│   │   └── SuiteDeTests.c
+│   └── wordFunc.c
+├── README //contient tous les changements effectué au cours du projet
+├── Resultat_valgrind //dossier contenant les fichiers avec les erreurs de valgrind
+│   └── Resultat_Dynamique.txt //Erreurs trouvées avec la bibliothèque dynamique
+├── setup_afl //dossier contenant les fichiers source pour utiliser AFL
+│   └── installe_afl.sh
+├── setup_klee //dossier contenant les fichiers source pour utiliser Klee
+│   └── env.sh
+└── test_couverture  ├── id:000000,orig:hugo.txt
+│      	.
+│    	.
+│    	.
+│       ├── id:000184,src:000000,op:havoc,rep:128
+│       └── id:000185,src:000000,op:havoc,rep:128
+├── debug.sh //script bash pour automatiser les tests
+├── dictionnaires.txt //Fichier de sortie contenant le dictionnaire créé
+├── donnees //dossier contenant tous nos fichiers textes pour les tests
+│   ├── diction.txt
+│   ├── fic1.txt
+│   ├── hugo1.txt
+│   ├── hugo.txt
+│   ├── or1.txt
+│   ├── orwell.txt
+│   ├── res1.txt
+│   └── wells.txt
+├── main //Exécutable 
+├── Makefile
+├── my_header //Dossier contenant tous les .h
+│   ├── AllTests.h
+│   ├── charFunc.h
+│   ├── conversion.h
+│   ├── dataStruct.h
+│   ├── dico.h
+│   ├── globals.h
+│   ├── macro.h
+│   ├── maillon.h
+│   ├── tests
+│   │   └── AllTests.h
+│   └── wordFunc.h
+├── my_lib //Dossier contenant les bibliothèques statique et dynamique
+│   ├── lib_obj
+│   ├── test_lib
+│   │   ├── CuTest.c
+│   │   └── CuTest.h
+│   └── test_obj
+├── my_obj // Dossier contenant les fichiers pour les tests de couverture
+│   └── tests
+│       ├── AllTests.gcda
+│       ├── AllTests.gcno
+│       ├── AllTests.o
+│       ├── SuiteDeTests.gcda
+│       ├── SuiteDeTests.gcno
+│       └── SuiteDeTests.o
+├── my_src //Dossier avec tous les fichiers sources
+│   ├── charFunc.c
+│   ├── conversion.c
+│   ├── dico.c
+│   ├── maillon.c
+│   ├── main.c
+│   ├── tests
+│   │   ├── AllTests.c
+│   │   └── SuiteDeTests.c
+│   └── wordFunc.c
+├── README //contient tous les changements effectué au cours du projet
+├── Resultat_valgrind //dossier contenant les fichiers avec les erreurs de valgrind
+│   └── Resultat_Dynamique.txt //Erreurs trouvées avec la bibliothèque dynamique
+├── setup_afl //dossier contenant les fichiers source pour utiliser AFL
+│   └── installe_afl.sh
+├── setup_klee //dossier contenant les fichiers source pour utiliser Klee
+│   └── env.sh
+└── test_couverture //fichier contenant les résultats lorsqu'on lance gcov à partir du MAKEFILE
 
 
 Changements effectués :
