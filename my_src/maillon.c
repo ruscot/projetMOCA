@@ -19,10 +19,13 @@ int getSizeMaillon(maillon_t* link) {
   } else {
     int i = 0,res = 0;
     maillon_t* useLink = link;
+    //Variable utilisée pour le macro ISAVAILABLE
+    char c;
     while(useLink != NULL) {
       for(i=0;i<=5;i++) {
-	if  (isAvailable(getCharnum(useLink,i)) == 0) {break;}
-	res++;
+        c = getCharnum(useLink,i);
+	      if  (ISAVAILABLE(c) == 0) {break;}
+	      res++;
       }
       useLink = useLink->next;
     }

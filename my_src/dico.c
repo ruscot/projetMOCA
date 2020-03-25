@@ -11,7 +11,7 @@ dico* initDico(){
   return dictionary;
 }
 
-unsigned int getMask(int k) {
+unsigned int inline getMask(int k) {
   switch(k) {
   case 0:
     return 0x3E000000;
@@ -40,18 +40,21 @@ void insertDico(dico* dictionary, mot_t* linkWord) {
   dico* newDictionaryPrevious = (dico*) malloc(sizeof(dico));
   newDictionary = dictionary;
   newDictionaryPrevious = newDictionary; 
-  while(compareWord(newDictionary->mot,linkWord)<0 && newDictionary != NULL) {
+  //result of function compareWord(newDictionary->mot,linkWord)
+  int resCompareWord = compareWord(newDictionary->mot,linkWord);
+  while(resCompareWord/*compareWord(newDictionary->mot,linkWord)*/<0 && newDictionary != NULL) {
     if (newDictionary->next == NULL) {
       addTailWord(newDictionary,linkWord);
       return;
     } else {
       newDictionaryPrevious = newDictionary;
       newDictionary = newDictionary->next;
+      resCompareWord = compareWord(newDictionary->mot,linkWord);
     }
   }
-  if (compareWord(newDictionary->mot,linkWord)==0) { 
+  if (resCompareWord/*compareWord(newDictionary->mot,linkWord)*/==0) { 
     incWord(newDictionary->mot->queue_liste,linkWord->tete_liste->line,linkWord->tete_liste->colonne);
-  } else { //
+  } else { 
     if (newDictionary == dictionary) {
       addHeadWord(newDictionary,linkWord);
     } else {
@@ -84,9 +87,9 @@ void displayDico(dico* dictionary) {
 	exit(0);
   }
   if (!feof(f))
-    printf("Resultat existant dans le fichier resultat, on ecrase\n");
+    fprintf(stdout, "Resultat existant dans le fichier resultat, on ecrase\n");
   if (dictionary == NULL) {
-    printf("displayDico : NULL\n");
+    fprintf(stdout, "displayDico : NULL\n");
   } else {
     fprintf(f, "Contenu dictionnaire pour %s : \n", TEXTE);
     dico* tempDico = (dico*) malloc(sizeof(dico));

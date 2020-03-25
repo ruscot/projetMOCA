@@ -1,0 +1,61 @@
+\hypertarget{conversion_8h}{}\section{my\+\_\+header/conversion.h File Reference}
+\label{conversion_8h}\index{my\+\_\+header/conversion.\+h@{my\+\_\+header/conversion.\+h}}
+
+
+Fonction de conversion.  
+
+
+{\ttfamily \#include \char`\"{}data\+Struct.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}dico.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}globals.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmaillon__t}{maillon\+\_\+t}} $\ast$ \mbox{\hyperlink{conversion_8h_a0381425450cb493ddcf82016f3a68715}{string\+To\+Maillon}} (char $\ast$word)
+\begin{DoxyCompactList}\small\item\em Fonction qui convertie une chaine de caractère en maillon. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{conversion_8h_ae80e635ff96174d1631df5488937e0ab}{maillon\+To\+String}} (\mbox{\hyperlink{structmaillon__t}{maillon\+\_\+t}} $\ast$link)
+\begin{DoxyCompactList}\small\item\em Fonction qui convertie un maillon en chaine de caractère. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Fonction de conversion. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{conversion_8h_ae80e635ff96174d1631df5488937e0ab}\label{conversion_8h_ae80e635ff96174d1631df5488937e0ab}} 
+\index{conversion.\+h@{conversion.\+h}!maillon\+To\+String@{maillon\+To\+String}}
+\index{maillon\+To\+String@{maillon\+To\+String}!conversion.\+h@{conversion.\+h}}
+\subsubsection{\texorpdfstring{maillon\+To\+String()}{maillonToString()}}
+{\footnotesize\ttfamily char $\ast$ maillon\+To\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmaillon__t}{maillon\+\_\+t}} $\ast$}]{link }\end{DoxyParamCaption})}
+
+
+
+Fonction qui convertie un maillon en chaine de caractère. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em link} & le maillon à convertir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Renvoie la chaine de caractère correspondante 
+\end{DoxyReturn}
+word = N\+U\+LL; \mbox{\Hypertarget{conversion_8h_a0381425450cb493ddcf82016f3a68715}\label{conversion_8h_a0381425450cb493ddcf82016f3a68715}} 
+\index{conversion.\+h@{conversion.\+h}!string\+To\+Maillon@{string\+To\+Maillon}}
+\index{string\+To\+Maillon@{string\+To\+Maillon}!conversion.\+h@{conversion.\+h}}
+\subsubsection{\texorpdfstring{string\+To\+Maillon()}{stringToMaillon()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmaillon__t}{maillon\+\_\+t}} $\ast$ string\+To\+Maillon (\begin{DoxyParamCaption}\item[{char $\ast$}]{word }\end{DoxyParamCaption})}
+
+
+
+Fonction qui convertie une chaine de caractère en maillon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em word} & la chaine de caractère à convertir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Renvoie le maillon contenant la chaine 
+\end{DoxyReturn}

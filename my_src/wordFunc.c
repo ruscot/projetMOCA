@@ -147,6 +147,4 @@ void incWord(emplacement_t* location, unsigned int line, unsigned int colonne) {
     tempLocation = tempLocation->next;
   }
   tempLocation->next = newLocation;
-  //free(newLocation);
-  //free(tempLocation);
 }

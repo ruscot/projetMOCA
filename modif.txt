@@ -1,0 +1,44 @@
+//conversion.h
+/**
+*\fn int charToNum(char c)
+*\brief Fonction qui convertie un caractère en entier
+*\param c le caractère à transformer en entier
+*\return Renvoie l'entier trouvé
+*/
+int charToNum(char c);
+
+/**
+*\fn char numToChar(int i)
+*\brief Fonction qui convertie un entier en caractère
+*\param i l'entier à transformer en caractère
+*\return Renvoie le caractère trouvé
+*/
+char numToChar(int i);
+
+
+//conversion.c
+int charToNum(char c) {
+  return c - 'a' + 1;
+}
+
+char numToChar(int i) {  
+  return (i + 'a' - 1);
+}
+
+//charFunc.h
+/**
+*\fn int isAvailable(char c)
+*\brief Fonction qui vérifie si le caractère est correcte (compris entre a et z)
+*\param c caractère à vérifier
+*\return Renvoie 1 si le caractère est compris entre a et z, 0 sinon 
+*/
+int isAvailable(char c);
+
+//charFunc.c
+int isAvailable(char c) {
+  if (c < 'a' || c > 'z') {
+    return 0;
+  } else {
+    return 1;
+  }
+}

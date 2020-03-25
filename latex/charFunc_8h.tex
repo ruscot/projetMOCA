@@ -1,0 +1,82 @@
+\hypertarget{charFunc_8h}{}\section{my\+\_\+header/char\+Func.h File Reference}
+\label{charFunc_8h}\index{my\+\_\+header/char\+Func.\+h@{my\+\_\+header/char\+Func.\+h}}
+
+
+Fonction sur les caractères.  
+
+
+{\ttfamily \#include \char`\"{}data\+Struct.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}dico.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}globals.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structemplacement__t}{emplacement\+\_\+t}} $\ast$ \mbox{\hyperlink{charFunc_8h_a607ebec59cb75b9b6c8334184c381877}{init\+Emplacement}} ()
+\begin{DoxyCompactList}\small\item\em Fonction qui initialise une structure de type \mbox{\hyperlink{structemplacement__t}{emplacement\+\_\+t}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{charFunc_8h_a69d7cb21be4b069744e7bd49adfed481}{set\+Charnum}} (\mbox{\hyperlink{structmaillon__t}{maillon\+\_\+t}} $\ast$link, int k, char c)
+\begin{DoxyCompactList}\small\item\em Fonction qui initialise link-\/$>$elem en fonction de k et c. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{charFunc_8h_a43491af3d151387f859ad7d9a03371e2}{get\+Charnum}} (\mbox{\hyperlink{structmaillon__t}{maillon\+\_\+t}} $\ast$link, int k)
+\begin{DoxyCompactList}\small\item\em Fonction qui renvoie la valeur du caractère stocké dans link-\/$>$elem. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Fonction sur les caractères. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{charFunc_8h_a43491af3d151387f859ad7d9a03371e2}\label{charFunc_8h_a43491af3d151387f859ad7d9a03371e2}} 
+\index{char\+Func.\+h@{char\+Func.\+h}!get\+Charnum@{get\+Charnum}}
+\index{get\+Charnum@{get\+Charnum}!char\+Func.\+h@{char\+Func.\+h}}
+\subsubsection{\texorpdfstring{get\+Charnum()}{getCharnum()}}
+{\footnotesize\ttfamily char get\+Charnum (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmaillon__t}{maillon\+\_\+t}} $\ast$}]{link,  }\item[{int}]{k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Fonction qui renvoie la valeur du caractère stocké dans link-\/$>$elem. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em link} & \mbox{\hyperlink{structmaillon__t}{maillon\+\_\+t}} contenant le caractère à renvoyer \\
+\hline
+{\em k} & masque permettant de récupérer le caractère \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Renvoie le caractère stocké dans la structure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{charFunc_8h_a607ebec59cb75b9b6c8334184c381877}\label{charFunc_8h_a607ebec59cb75b9b6c8334184c381877}} 
+\index{char\+Func.\+h@{char\+Func.\+h}!init\+Emplacement@{init\+Emplacement}}
+\index{init\+Emplacement@{init\+Emplacement}!char\+Func.\+h@{char\+Func.\+h}}
+\subsubsection{\texorpdfstring{init\+Emplacement()}{initEmplacement()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structemplacement__t}{emplacement\+\_\+t}} $\ast$ init\+Emplacement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui initialise une structure de type \mbox{\hyperlink{structemplacement__t}{emplacement\+\_\+t}}. 
+
+\begin{DoxyReturn}{Returns}
+Renvoie la structure initialisée 
+\end{DoxyReturn}
+\mbox{\Hypertarget{charFunc_8h_a69d7cb21be4b069744e7bd49adfed481}\label{charFunc_8h_a69d7cb21be4b069744e7bd49adfed481}} 
+\index{char\+Func.\+h@{char\+Func.\+h}!set\+Charnum@{set\+Charnum}}
+\index{set\+Charnum@{set\+Charnum}!char\+Func.\+h@{char\+Func.\+h}}
+\subsubsection{\texorpdfstring{set\+Charnum()}{setCharnum()}}
+{\footnotesize\ttfamily void set\+Charnum (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmaillon__t}{maillon\+\_\+t}} $\ast$}]{link,  }\item[{int}]{k,  }\item[{char}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Fonction qui initialise link-\/$>$elem en fonction de k et c. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em link} & maillon dont l\textquotesingle{}élément doit être initialisé \\
+\hline
+{\em k} & valeur du masque à appliquer \\
+\hline
+{\em c} & caractère à stocker \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ne renvoi rien 
+\end{DoxyReturn}

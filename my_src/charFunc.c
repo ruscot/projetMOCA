@@ -13,35 +13,20 @@ emplacement_t* initEmplacement(){
   return em;
 }
 
-void setCharnum(maillon_t* link, int k, char c) {
+void inline setCharnum(maillon_t* link, int k, char c) {
   if (link == NULL) {
-    printf("setCharnum : link null\n");
+    fprintf(stdout,"setCharnum : link null\n");
   } else {
-    link->elem = (link->elem & ~getMask(k)) + ((unsigned int)charToNum(c) << (5*(5-k)));
+    link->elem = (link->elem & ~getMask(k)) + ((unsigned int)CHARTONUM(c) << (5*(5-k)));
   }
 }
 
 
-/*
- *
- * */
-char getCharnum(maillon_t* link, int k) {
+char inline getCharnum(maillon_t* link, int k) {
   if (link == NULL) {
-    printf("getCharnum : link null\n");
+    fprintf(stdout, "getCharnum : link null\n");
     return '#';
   } else {
-    return numToChar((link->elem & getMask(k)) >> (5*(5-k)));
-  }
-}
-
-
-/* Renvoi 1 si la lettre est comprise entre
- * a et z
- * */
-int isAvailable(char c) {
-  if (c < 'a' || c > 'z') {
-    return 0;
-  } else {
-    return 1;
+    return NUMTOCHAR((link->elem & getMask(k)) >> (5*(5-k)));
   }
 }

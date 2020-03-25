@@ -12,6 +12,7 @@
 #	KLEE=1 pour utliser KLEE
 #	ASAN=1 pour utiliser ASAN et il faut lancer en dynamique
 #	Pour le lancer en mode debug DEBUG=1
+#	Pour lancer le profiling profiling=1
 ###############################################################################
 
 INCLUDEDIR_1=my_header
@@ -34,7 +35,9 @@ OBJSTESTS=$(SRCSTESTS:$(SRCTESTS)/%.c=$(OBJTESTS)/%.o)
 
 CC=gcc
 
-
+ifdef profiling
+CC+=-pg
+endif
 
 ifdef AFL
 CC=afl-gcc
@@ -78,14 +81,14 @@ LIBS=s
 ifeq ($(LIBS),s)
 LDFLAGS= -L $(LIBDIR)/ -static -lStatique -lTestS
 # On compile seulement la partie statique
-all: libTestS libS main
+all: libTestS libS main doxygen
 endif
 ifeq ($(LIBS),d)
 
 # On utilise l'option -rpath pour mettre à jour la variable d'environnement LD_LIBRARY_PATH
 LDFLAGS= -L $(LIBDIR)/ -Wl,-rpath,./$(LIBDIR) -Bdynamic -lDynamique -lTestD
 # On compile seulement la partie dynamique
-all: libTestD libD main 
+all: libTestD libD main doxygen
 endif
 
 ifdef COV
@@ -150,6 +153,10 @@ rungcov:
 	gcov -b -c $(SRCS) -o $(OBJDIR)/
 	gcov -b -c $(SRCSTESTS) -o $(OBJTESTS)/
 	mv *.gcov $(TESTCOUV)
+
+#Règle de compilation pour la documentation avec doxygen
+doxygen:
+	doxygen doxy-convert.conf
 
 clean:
 	rm -f main $(OBJDIR)/*.* $(OBJTESTS)/*.* $(LIBDIR)/*.* $(OBJDIR2)/* $(OBJTESTDIR)/*.* $(TESTCOUV)/*.*

@@ -1,0 +1,194 @@
+\hypertarget{wordFunc_8h}{}\section{my\+\_\+header/word\+Func.h File Reference}
+\label{wordFunc_8h}\index{my\+\_\+header/word\+Func.\+h@{my\+\_\+header/word\+Func.\+h}}
+
+
+Fonction sur les mots.  
+
+
+{\ttfamily \#include \char`\"{}data\+Struct.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$ \mbox{\hyperlink{wordFunc_8h_aa79b95f0433a605d5688f083afbd2319}{init\+Mot}} ()
+\begin{DoxyCompactList}\small\item\em Initialise une structure de type init\+Mot. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$ \mbox{\hyperlink{wordFunc_8h_acc6051f9aa44e7a192695356384ed6a1}{generate\+Mot\+\_\+t}} (char $\ast$word, unsigned int $\ast$line, unsigned int $\ast$colonne)
+\begin{DoxyCompactList}\small\item\em Fonction qui stocke un mot dans une structure de type \mbox{\hyperlink{structmot__t}{mot\+\_\+t}}. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{wordFunc_8h_a233e46b2aa342861b032939f8f0323f0}{next\+\_\+word}} (F\+I\+LE $\ast$f, unsigned int $\ast$nblin, unsigned int $\ast$nbcol)
+\begin{DoxyCompactList}\small\item\em Fonction qui lit le prochain mot dans le texte. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{wordFunc_8h_a9b0318e04b3bcdf6a2084af12b223347}{compare\+Word}} (\mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$w1, \mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$w2)
+\begin{DoxyCompactList}\small\item\em Fonction qui compare deux mot entre eux. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{wordFunc_8h_ae7a9499e98abc83c01d64eaee6ffea72}{add\+Tail\+Word}} (\mbox{\hyperlink{structdico}{dico}} $\ast$dictionary, \mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$link\+Word)
+\begin{DoxyCompactList}\small\item\em Fonction qui ajoute un mot à la fin du dictionnaire. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{wordFunc_8h_aeb427f6f6092f152f71732b82fe55bd9}{add\+Head\+Word}} (\mbox{\hyperlink{structdico}{dico}} $\ast$dictionary, \mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$link\+Word)
+\begin{DoxyCompactList}\small\item\em Fonction qui ajoute un mot mot au début du dictionnaire. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{wordFunc_8h_a954e0145c686983628a06170cd4bfbc6}{inc\+Word}} (\mbox{\hyperlink{structemplacement__t}{emplacement\+\_\+t}} $\ast$location, unsigned int line, unsigned int colonne)
+\begin{DoxyCompactList}\small\item\em Fonction qui ajoute une location d\textquotesingle{}un mot dans le texte. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{wordFunc_8h_ad2018f1a14c9ff92ce5e62cb919726b8}{display\+Word}} (\mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$word, F\+I\+LE $\ast$filedes)
+\begin{DoxyCompactList}\small\item\em Fonction qui écrit un mot du texte dans un fichier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Fonction sur les mots. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{wordFunc_8h_aeb427f6f6092f152f71732b82fe55bd9}\label{wordFunc_8h_aeb427f6f6092f152f71732b82fe55bd9}} 
+\index{word\+Func.\+h@{word\+Func.\+h}!add\+Head\+Word@{add\+Head\+Word}}
+\index{add\+Head\+Word@{add\+Head\+Word}!word\+Func.\+h@{word\+Func.\+h}}
+\subsubsection{\texorpdfstring{add\+Head\+Word()}{addHeadWord()}}
+{\footnotesize\ttfamily void add\+Head\+Word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structdico}{dico}} $\ast$}]{dictionary,  }\item[{\mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$}]{link\+Word }\end{DoxyParamCaption})}
+
+
+
+Fonction qui ajoute un mot mot au début du dictionnaire. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dictionary} & le dictionnaire courant \\
+\hline
+{\em link\+Word} & le mot à ajouter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ne renvoi rien 
+\end{DoxyReturn}
+\mbox{\Hypertarget{wordFunc_8h_ae7a9499e98abc83c01d64eaee6ffea72}\label{wordFunc_8h_ae7a9499e98abc83c01d64eaee6ffea72}} 
+\index{word\+Func.\+h@{word\+Func.\+h}!add\+Tail\+Word@{add\+Tail\+Word}}
+\index{add\+Tail\+Word@{add\+Tail\+Word}!word\+Func.\+h@{word\+Func.\+h}}
+\subsubsection{\texorpdfstring{add\+Tail\+Word()}{addTailWord()}}
+{\footnotesize\ttfamily void add\+Tail\+Word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structdico}{dico}} $\ast$}]{dictionary,  }\item[{\mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$}]{link\+Word }\end{DoxyParamCaption})}
+
+
+
+Fonction qui ajoute un mot à la fin du dictionnaire. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dictionary} & le dictionnaire courant \\
+\hline
+{\em link\+Word} & mot à ajouter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ne renvoi rien 
+\end{DoxyReturn}
+\mbox{\Hypertarget{wordFunc_8h_a9b0318e04b3bcdf6a2084af12b223347}\label{wordFunc_8h_a9b0318e04b3bcdf6a2084af12b223347}} 
+\index{word\+Func.\+h@{word\+Func.\+h}!compare\+Word@{compare\+Word}}
+\index{compare\+Word@{compare\+Word}!word\+Func.\+h@{word\+Func.\+h}}
+\subsubsection{\texorpdfstring{compare\+Word()}{compareWord()}}
+{\footnotesize\ttfamily int compare\+Word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$}]{w1,  }\item[{\mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$}]{w2 }\end{DoxyParamCaption})}
+
+
+
+Fonction qui compare deux mot entre eux. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em w1} & le premier mot \\
+\hline
+{\em w2} & le deuxième mot \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Renvoi 1 si w1 N\+U\+LL ou si taille de w2 $<$ taille de w1, -\/1 si w2 N\+U\+LL ou si taille de w1 $<$ taille de w2 sinon 0 si taille égale 
+\end{DoxyReturn}
+\mbox{\Hypertarget{wordFunc_8h_ad2018f1a14c9ff92ce5e62cb919726b8}\label{wordFunc_8h_ad2018f1a14c9ff92ce5e62cb919726b8}} 
+\index{word\+Func.\+h@{word\+Func.\+h}!display\+Word@{display\+Word}}
+\index{display\+Word@{display\+Word}!word\+Func.\+h@{word\+Func.\+h}}
+\subsubsection{\texorpdfstring{display\+Word()}{displayWord()}}
+{\footnotesize\ttfamily void display\+Word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$}]{word,  }\item[{F\+I\+LE $\ast$}]{filedes }\end{DoxyParamCaption})}
+
+
+
+Fonction qui écrit un mot du texte dans un fichier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em word} & le mot que l\textquotesingle{}on souhaite écrire \\
+\hline
+{\em filedes} & fichier destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ne renvoi rien 
+\end{DoxyReturn}
+\mbox{\Hypertarget{wordFunc_8h_acc6051f9aa44e7a192695356384ed6a1}\label{wordFunc_8h_acc6051f9aa44e7a192695356384ed6a1}} 
+\index{word\+Func.\+h@{word\+Func.\+h}!generate\+Mot\+\_\+t@{generate\+Mot\+\_\+t}}
+\index{generate\+Mot\+\_\+t@{generate\+Mot\+\_\+t}!word\+Func.\+h@{word\+Func.\+h}}
+\subsubsection{\texorpdfstring{generate\+Mot\+\_\+t()}{generateMot\_t()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$ generate\+Mot\+\_\+t (\begin{DoxyParamCaption}\item[{char $\ast$}]{word,  }\item[{unsigned int $\ast$}]{line,  }\item[{unsigned int $\ast$}]{colonne }\end{DoxyParamCaption})}
+
+
+
+Fonction qui stocke un mot dans une structure de type \mbox{\hyperlink{structmot__t}{mot\+\_\+t}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em word} & mot que l\textquotesingle{}on souhaite stocker \\
+\hline
+{\em line} & la ligne du mot que l\textquotesingle{}on souhaite ajouter \\
+\hline
+{\em colonne} & la colonne du mot que l\textquotesingle{}on souhaite ajouter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Renvoie la structure de donnée contenant le mot 
+\end{DoxyReturn}
+\mbox{\Hypertarget{wordFunc_8h_a954e0145c686983628a06170cd4bfbc6}\label{wordFunc_8h_a954e0145c686983628a06170cd4bfbc6}} 
+\index{word\+Func.\+h@{word\+Func.\+h}!inc\+Word@{inc\+Word}}
+\index{inc\+Word@{inc\+Word}!word\+Func.\+h@{word\+Func.\+h}}
+\subsubsection{\texorpdfstring{inc\+Word()}{incWord()}}
+{\footnotesize\ttfamily void inc\+Word (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structemplacement__t}{emplacement\+\_\+t}} $\ast$}]{location,  }\item[{unsigned int}]{line,  }\item[{unsigned int}]{colonne }\end{DoxyParamCaption})}
+
+
+
+Fonction qui ajoute une location d\textquotesingle{}un mot dans le texte. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em location} & du mot auquel on souhaite ajouter une occurence \\
+\hline
+{\em line} & la ligne du mot que l\textquotesingle{}on souhaite ajouter \\
+\hline
+{\em colonne} & la colonne du mot que l\textquotesingle{}on souhaite ajouter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Ne renvoi rien 
+\end{DoxyReturn}
+\mbox{\Hypertarget{wordFunc_8h_aa79b95f0433a605d5688f083afbd2319}\label{wordFunc_8h_aa79b95f0433a605d5688f083afbd2319}} 
+\index{word\+Func.\+h@{word\+Func.\+h}!init\+Mot@{init\+Mot}}
+\index{init\+Mot@{init\+Mot}!word\+Func.\+h@{word\+Func.\+h}}
+\subsubsection{\texorpdfstring{init\+Mot()}{initMot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmot__t}{mot\+\_\+t}} $\ast$ init\+Mot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise une structure de type init\+Mot. 
+
+\begin{DoxyReturn}{Returns}
+Renvoie la structure initialisée 
+\end{DoxyReturn}
+\mbox{\Hypertarget{wordFunc_8h_a233e46b2aa342861b032939f8f0323f0}\label{wordFunc_8h_a233e46b2aa342861b032939f8f0323f0}} 
+\index{word\+Func.\+h@{word\+Func.\+h}!next\+\_\+word@{next\+\_\+word}}
+\index{next\+\_\+word@{next\+\_\+word}!word\+Func.\+h@{word\+Func.\+h}}
+\subsubsection{\texorpdfstring{next\+\_\+word()}{next\_word()}}
+{\footnotesize\ttfamily char $\ast$ next\+\_\+word (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{f,  }\item[{unsigned int $\ast$}]{nblin,  }\item[{unsigned int $\ast$}]{nbcol }\end{DoxyParamCaption})}
+
+
+
+Fonction qui lit le prochain mot dans le texte. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & le fichier contenant le texte \\
+\hline
+{\em nblin} & la ligne courante du texte \\
+\hline
+{\em nbcol} & la colonne courante du texte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Renvoie le mot lu 
+\end{DoxyReturn}

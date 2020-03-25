@@ -1,0 +1,45 @@
+\hypertarget{macro_8h}{}\section{my\+\_\+header/macro.h File Reference}
+\label{macro_8h}\index{my\+\_\+header/macro.\+h@{my\+\_\+header/macro.\+h}}
+
+
+Contient les différentes macro utiles au programme.  
+
+
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{macro_8h_acffef4fa98eecbaf1f07b0b28db3160d}\label{macro_8h_acffef4fa98eecbaf1f07b0b28db3160d}} 
+\#define \mbox{\hyperlink{macro_8h_acffef4fa98eecbaf1f07b0b28db3160d}{Size\+Letter}}~5
+\begin{DoxyCompactList}\small\item\em Macro Size\+Letter qui donne la taille d\textquotesingle{}une lettre. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{macro_8h_aba149b8fbbfef4e67c2d204806a17af0}\label{macro_8h_aba149b8fbbfef4e67c2d204806a17af0}} 
+\#define \mbox{\hyperlink{macro_8h_aba149b8fbbfef4e67c2d204806a17af0}{max\+Size\+Word}}~25
+\begin{DoxyCompactList}\small\item\em Macro max\+Size\+Word qui nous donne la taille maximum d\textquotesingle{}un mot. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{macro_8h_a95cf1ca63ff303311d342d1a53d51f38}\label{macro_8h_a95cf1ca63ff303311d342d1a53d51f38}} 
+\#define \mbox{\hyperlink{macro_8h_a95cf1ca63ff303311d342d1a53d51f38}{S\+EP}}~\char`\"{} ;\+:/,.-\/\textquotesingle{}?!\char`\"{}
+\begin{DoxyCompactList}\small\item\em Macro S\+EP qui contient les différents séparateurs possbile dans un texte. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{macro_8h_ac3ee2c6f99b228fe1f01b62f13a2b861}\label{macro_8h_ac3ee2c6f99b228fe1f01b62f13a2b861}} 
+\#define \mbox{\hyperlink{macro_8h_ac3ee2c6f99b228fe1f01b62f13a2b861}{T\+E\+X\+TE}}~\char`\"{}hugo.\+txt\char`\"{}
+\begin{DoxyCompactList}\small\item\em Macro T\+E\+X\+TE pour le T\+E\+X\+TE qu\textquotesingle{}on utilise en entrée. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{macro_8h_aff03ef1d563e292c6c9e1be5dd68c201}\label{macro_8h_aff03ef1d563e292c6c9e1be5dd68c201}} 
+\#define \mbox{\hyperlink{macro_8h_aff03ef1d563e292c6c9e1be5dd68c201}{D\+I\+C\+O\+R\+ES}}~\char`\"{}donnees/res1.\+txt\char`\"{}
+\begin{DoxyCompactList}\small\item\em Macro D\+I\+C\+O\+R\+ES qui contient le fichiers ou l\textquotesingle{}on stocke le dictionnaire créé. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{macro_8h_a62212a836765b65b5f9af83582775679}\label{macro_8h_a62212a836765b65b5f9af83582775679}} 
+\#define \mbox{\hyperlink{macro_8h_a62212a836765b65b5f9af83582775679}{C\+H\+A\+R\+T\+O\+N\+UM}}(c)~(((c) -\/ \textquotesingle{}a\textquotesingle{}) + 1)
+\begin{DoxyCompactList}\small\item\em Macro \mbox{\hyperlink{macro_8h_a62212a836765b65b5f9af83582775679}{C\+H\+A\+R\+T\+O\+N\+U\+M(char c)}} fonction qui renvoie c -\/ \textquotesingle{}a\textquotesingle{} + 1. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{macro_8h_aea3a6f502072797c4508bc0236c7f281}\label{macro_8h_aea3a6f502072797c4508bc0236c7f281}} 
+\#define \mbox{\hyperlink{macro_8h_aea3a6f502072797c4508bc0236c7f281}{N\+U\+M\+T\+O\+C\+H\+AR}}(i)~(((i) + \textquotesingle{}a\textquotesingle{}) -\/ 1)
+\begin{DoxyCompactList}\small\item\em Macro \mbox{\hyperlink{macro_8h_aea3a6f502072797c4508bc0236c7f281}{N\+U\+M\+T\+O\+C\+H\+A\+R(int i)}} fonction qui renvoie i + \textquotesingle{}a\textquotesingle{} -\/ 1. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{macro_8h_ad1d15cdd2d499c22c3e6776228f78227}\label{macro_8h_ad1d15cdd2d499c22c3e6776228f78227}} 
+\#define \mbox{\hyperlink{macro_8h_ad1d15cdd2d499c22c3e6776228f78227}{I\+N\+FA}}(c)~c $<$ \textquotesingle{}a\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em Macro I\+S\+A\+V\+A\+I\+L\+A\+B\+L\+E(char c) fonction qui renvoie 0 si c n\textquotesingle{}est pas compris entre a et z, sinon 1. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{macro_8h_a55de4633e44829ed2e7dba6b0a12db31}\label{macro_8h_a55de4633e44829ed2e7dba6b0a12db31}} 
+\#define {\bfseries S\+U\+PZ}(c)~c $>$ \textquotesingle{}z\textquotesingle{}
+\item 
+\mbox{\Hypertarget{macro_8h_aa3406d7a90377a754d827eb5012a4145}\label{macro_8h_aa3406d7a90377a754d827eb5012a4145}} 
+\#define {\bfseries I\+S\+A\+V\+A\+I\+L\+A\+B\+LE}(c)~(\mbox{\hyperlink{macro_8h_ad1d15cdd2d499c22c3e6776228f78227}{I\+N\+FA}}(c) $\vert$$\vert$ S\+U\+PZ(c) ? 0 \+: 1)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contient les différentes macro utiles au programme. 
+

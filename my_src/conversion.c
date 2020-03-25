@@ -4,14 +4,6 @@
 #include <stdint.h>
 #include "conversion.h"
 
-int charToNum(char c) {
-  return c - 'a' + 1;
-}
-
-char numToChar(int i) {   
-  return (i + 'a' - 1);
-}
-
 maillon_t* stringToMaillon(char* word) {
   if (word == NULL) {
     return NULL;
@@ -23,11 +15,11 @@ maillon_t* stringToMaillon(char* word) {
     unsigned int i;
     for(i=0;i<strlen(word);i++) {
       if ((i % 6) == 0 && useLink->elem != 0) { 
-	maillon_t* newLink = (maillon_t*) malloc(sizeof(maillon_t));
-	newLink->elem = 0;
-	newLink->next = NULL;
-	useLink->next = newLink;
-	useLink = newLink;
+	      maillon_t* newLink = (maillon_t*) malloc(sizeof(maillon_t));
+	      newLink->elem = 0;
+	      newLink->next = NULL;
+	      useLink->next = newLink;
+	      useLink = newLink;
       }
       setCharnum(useLink,(i%6),word[i]);
     }
@@ -44,11 +36,14 @@ char* maillonToString(maillon_t* link) {
     ///word = NULL;
     maillon_t* useLink = link;
     int index = 0, i = 0;
+    //variable pour stocker le retour de la fonction getCharnum
+    char reCharnum;
     while (useLink != NULL) {
       for(i=0;i<=5;i++) {
-	      if (isAvailable(getCharnum(useLink,i)) == 0) {break;}
+        reCharnum = getCharnum(useLink, i);
+	      if (ISAVAILABLE(reCharnum/*getCharnum(useLink,i)*/) == 0) {break;}
 	      else {
-	        word[index] = getCharnum(useLink,i);
+	        word[index] = reCharnum;//getCharnum(useLink,i);
 	        index++;
 	      }
       }

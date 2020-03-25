@@ -1,0 +1,645 @@
+Ajout de l'option profiling pour pouvoir utiliser gprof
+Ajout de commentaire
+Ajout de l'automatisme de doxygen output trouvé option recursive pour les dossiers
+
+Ajout du macro CHARTONUM qui remplace la fonction charToNum
+Ajout du macro NUMTOCHAR qui remplace la fonction numToChar
+  (#define NUMTOCHAR(i) ((((i) + 'a') - 1))) Beaucoup de parenthèse pour éviter un warning:
+  my_header/macro.h:42:31: warning: suggest parentheses around ‘-’ inside ‘>>’ [-Wparentheses]
+    #define NUMTOCHAR(i) (i + 'a' - 1)
+                                  ^
+  my_src/charFunc.c:30:12: note: in expansion of macro ‘NUMTOCHAR’
+      return NUMTOCHAR((link->elem & getMask(k)) >> (5*(5-k)));
+             ^
+
+Ajout du macro ISAVAILABLE qui remplace la fonction isAvailable
+Changement fonction getCharNum, setCharNum en fonction inline, changement non appliqué sur la fonction getMask pour éviter une grosse duplication de code
+Ajout de buffer entrée sortie (setCharNum, getCharnum, displayDico, main )
+
+Fonction maillonToString suppression d'un appel de fonction getCharNum
+char reCharnum;
+while (useLink != NULL) {
+  for(i=0;i<=5;i++) {
+    reCharnum = getCharnum(useLink, i);
+	  if (ISAVAILABLE(reCharnum/*getCharnum(useLink,i)*/) == 0) {break;}
+	  else {
+	    word[index] = reCharnum; // getCharnum(useLink,i);
+	    index++;
+	  }
+  }
+  useLink = useLink->next;
+}
+
+Fonction insertDico changement de la fonction pour faire moins d'appel à la fonction compareWord//result of function compareWord(newDictionary->mot,linkWord)
+  int resCompareWord = compareWord(newDictionary->mot,linkWord);
+  while(resCompareWord/*compareWord(newDictionary->mot,linkWord)*/<0 && newDictionary != NULL) {
+    if (newDictionary->next == NULL) {
+      addTailWord(newDictionary,linkWord);
+      return;
+    } else {
+      newDictionaryPrevious = newDictionary;
+      newDictionary = newDictionary->next;
+      resCompareWord = compareWord(newDictionary->mot,linkWord);
+    }
+  }
+  if (resCompareWord) { ....
+ 
+
+longTexte.txt
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 25.00      0.10     0.10  8241671     0.00     0.00  getCharnum
+ 17.50      0.17     0.07  8408702     0.00     0.00  getMask
+ 12.50      0.22     0.05    10007     0.00     0.00  incWord
+ 10.00      0.26     0.04                             _int_malloc
+  7.50      0.29     0.03   568719     0.00     0.00  maillonToString
+  5.00      0.31     0.02  8241671     0.00     0.00  numToChar
+  5.00      0.33     0.02   568719     0.00     0.00  getSizeMaillon
+  5.00      0.35     0.02                             writev
+  2.50      0.36     0.01  5829050     0.00     0.00  isAvailable
+  2.50      0.37     0.01                             __profile_frequency
+  2.50      0.38     0.01                             __strchr_sse2
+  2.50      0.39     0.01                             strchrnul
+  1.25      0.40     0.01                             __malloc_check_init
+  1.25      0.40     0.01                             malloc
+  0.00      0.40     0.00   284338     0.00     0.00  compareWord
+  0.00      0.40     0.00   167031     0.00     0.00  charToNum
+  0.00      0.40     0.00   167031     0.00     0.00  setCharnum
+  0.00      0.40     0.00    37788     0.00     0.01  addToDico
+  0.00      0.40     0.00    37788     0.00     0.00  generateMot_t
+  0.00      0.40     0.00    37788     0.00     0.00  next_word
+  0.00      0.40     0.00    37788     0.00     0.00  stringToMaillon
+  0.00      0.40     0.00    37787     0.00     0.01  insertDico
+  0.00      0.40     0.00    27738     0.00     0.00  addHeadWord
+  0.00      0.40     0.00       43     0.00     0.00  displayWord
+  0.00      0.40     0.00       42     0.00     0.00  addTailWord
+  0.00      0.40     0.00        1     0.00     0.02  displayDico
+  0.00      0.40     0.00        1     0.00   300.01  main
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+ 
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+           else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this 
+           function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+           the function in the gprof listing. If the index is
+           in parenthesis it shows where it would appear in
+           the gprof listing if it were to be printed.
+
+
+Copyright (C) 2012-2014 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+
+                     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 2.50% of 0.40 seconds
+
+index % time    self  children    called     name
+                0.00    0.30       1/1           __libc_start_main [2]
+[1]     75.0    0.00    0.30       1         main [1]
+                0.00    0.30   37788/37788       addToDico [3]
+                0.00    0.00       1/1           displayDico [24]
+                0.00    0.00   37788/37788       next_word [26]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]     75.0    0.00    0.30                 __libc_start_main [2]
+                0.00    0.30       1/1           main [1]
+-----------------------------------------------
+                0.00    0.30   37788/37788       main [1]
+[3]     75.0    0.00    0.30   37788         addToDico [3]
+                0.00    0.30   37787/37787       insertDico [4]
+                0.00    0.00   37788/37788       generateMot_t [21]
+-----------------------------------------------
+                0.00    0.30   37787/37787       addToDico [3]
+[4]     74.6    0.00    0.30   37787         insertDico [4]
+                0.00    0.25  284338/284338      compareWord [6]
+                0.05    0.00   10007/10007       incWord [10]
+                0.00    0.00   27738/27738       addHeadWord [27]
+                0.00    0.00      42/42          addTailWord [28]
+-----------------------------------------------
+                0.00    0.00      43/568719      displayWord [23]
+                0.03    0.22  568676/568719      compareWord [6]
+[5]     62.2    0.03    0.22  568719         maillonToString [5]
+                0.06    0.06 5327146/8241671     getCharnum [7]
+                0.02    0.07  568719/568719      getSizeMaillon [8]
+                0.01    0.00 2914525/5829050     isAvailable [14]
+-----------------------------------------------
+                0.00    0.25  284338/284338      insertDico [4]
+[6]     62.1    0.00    0.25  284338         compareWord [6]
+                0.03    0.22  568676/568719      maillonToString [5]
+-----------------------------------------------
+                0.04    0.03 2914525/8241671     getSizeMaillon [8]
+                0.06    0.06 5327146/8241671     maillonToString [5]
+[7]     47.2    0.10    0.09 8241671         getCharnum [7]
+                0.07    0.00 8241671/8408702     getMask [9]
+                0.02    0.00 8241671/8241671     numToChar [12]
+-----------------------------------------------
+                0.02    0.07  568719/568719      maillonToString [5]
+[8]     22.9    0.02    0.07  568719         getSizeMaillon [8]
+                0.04    0.03 2914525/8241671     getCharnum [7]
+                0.01    0.00 2914525/5829050     isAvailable [14]
+-----------------------------------------------
+                0.00    0.00  167031/8408702     setCharnum [20]
+                0.07    0.00 8241671/8408702     getCharnum [7]
+[9]     17.5    0.07    0.00 8408702         getMask [9]
+-----------------------------------------------
+                0.05    0.00   10007/10007       insertDico [4]
+[10]    12.5    0.05    0.00   10007         incWord [10]
+-----------------------------------------------
+                                                 <spontaneous>
+[11]    10.0    0.04    0.00                 _int_malloc [11]
+-----------------------------------------------
+                0.02    0.00 8241671/8241671     getCharnum [7]
+[12]     5.0    0.02    0.00 8241671         numToChar [12]
+-----------------------------------------------
+                                                 <spontaneous>
+[13]     5.0    0.02    0.00                 writev [13]
+-----------------------------------------------
+                0.01    0.00 2914525/5829050     maillonToString [5]
+                0.01    0.00 2914525/5829050     getSizeMaillon [8]
+[14]     2.5    0.01    0.00 5829050         isAvailable [14]
+-----------------------------------------------
+                                                 <spontaneous>
+[15]     2.5    0.01    0.00                 strchrnul [15]
+-----------------------------------------------
+                                                 <spontaneous>
+[16]     2.5    0.01    0.00                 __profile_frequency [16]
+-----------------------------------------------
+                                                 <spontaneous>
+[17]     2.5    0.01    0.00                 __strchr_sse2 [17]
+-----------------------------------------------
+                                                 <spontaneous>
+[18]     1.2    0.01    0.00                 malloc [18]
+-----------------------------------------------
+                                                 <spontaneous>
+[19]     1.2    0.01    0.00                 __malloc_check_init [19]
+-----------------------------------------------
+                0.00    0.00  167031/167031      stringToMaillon [22]
+[20]     0.3    0.00    0.00  167031         setCharnum [20]
+                0.00    0.00  167031/8408702     getMask [9]
+                0.00    0.00  167031/167031      charToNum [25]
+-----------------------------------------------
+                0.00    0.00   37788/37788       addToDico [3]
+[21]     0.3    0.00    0.00   37788         generateMot_t [21]
+                0.00    0.00   37788/37788       stringToMaillon [22]
+-----------------------------------------------
+                0.00    0.00   37788/37788       generateMot_t [21]
+[22]     0.3    0.00    0.00   37788         stringToMaillon [22]
+                0.00    0.00  167031/167031      setCharnum [20]
+-----------------------------------------------
+                0.00    0.00      43/43          displayDico [24]
+[23]     0.0    0.00    0.00      43         displayWord [23]
+                0.00    0.00      43/568719      maillonToString [5]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[24]     0.0    0.00    0.00       1         displayDico [24]
+                0.00    0.00      43/43          displayWord [23]
+-----------------------------------------------
+                0.00    0.00  167031/167031      setCharnum [20]
+[25]     0.0    0.00    0.00  167031         charToNum [25]
+-----------------------------------------------
+                0.00    0.00   37788/37788       main [1]
+[26]     0.0    0.00    0.00   37788         next_word [26]
+-----------------------------------------------
+                0.00    0.00   27738/27738       insertDico [4]
+[27]     0.0    0.00    0.00   27738         addHeadWord [27]
+-----------------------------------------------
+                0.00    0.00      42/42          insertDico [4]
+[28]     0.0    0.00    0.00      42         addTailWord [28]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index      A unique number given to each element of the table.
+                Index numbers are sorted numerically.
+                The index number is printed next to every function name so
+                it is easier to look up where the function is in the table.
+
+     % time     This is the percentage of the `total' time that was spent
+                in this function and its children.  Note that due to
+                different viewpoints, functions excluded by options, etc,
+                these numbers will NOT add up to 100%.
+
+     self       This is the total amount of time spent in this function.
+
+     children   This is the total amount of time propagated into this
+                function by its children.
+
+     called     This is the number of times the function was called.
+                If the function called itself recursively, the number
+                only includes non-recursive calls, and is followed by
+                a `+' and the number of recursive calls.
+
+     name       The name of the current function.  The index number is
+                printed after it.  If the function is a member of a
+                cycle, the cycle number is printed between the
+                function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self       This is the amount of time that was propagated directly
+                from the function into this parent.
+
+     children   This is the amount of time that was propagated from
+                the function's children into this parent.
+
+     called     This is the number of times this parent called the
+                function `/' the total number of times the function
+                was called.  Recursive calls to the function are not
+                included in the number after the `/'.
+
+     name       This is the name of the parent.  The parent's index
+                number is printed after it.  If the parent is a
+                member of a cycle, the cycle number is printed between
+                the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self       This is the amount of time that was propagated directly
+                from the child into the function.
+
+     children   This is the amount of time that was propagated from the
+                child's children to the function.
+
+     called     This is the number of times the function called
+                this child `/' the total number of times the child
+                was called.  Recursive calls by the child are not
+                listed in the number after the `/'.
+
+     name       This is the name of the child.  The child's index
+                number is printed after it.  If the child is a
+                member of a cycle, the cycle number is printed
+                between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+
+Copyright (C) 2012-2014 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+
+Index by function name
+
+  [19] __malloc_check_init    [24] displayDico             [5] maillonToString
+  [16] __profile_frequency    [23] displayWord             [1] main
+  [17] __strchr_sse2          [21] generateMot_t          [18] malloc
+  [11] _int_malloc             [7] getCharnum             [26] next_word
+  [27] addHeadWord             [9] getMask                [12] numToChar
+  [28] addTailWord             [8] getSizeMaillon         [20] setCharnum
+   [3] addToDico              [10] incWord                [15] strchrnul
+  [25] charToNum               [4] insertDico             [22] stringToMaillon
+   [6] compareWord            [14] isAvailable            [13] writev
+
+
+orwell.txt
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 20.96      0.57     0.57 80917122     0.00     0.00  getMask
+ 17.10      1.04     0.47 80796018     0.00     0.00  getCharnum
+ 10.29      1.32     0.28                             _int_malloc
+  8.09      1.54     0.22  4619660     0.00     0.00  maillonToString
+  6.99      1.73     0.19    22126     0.00     0.00  incWord
+  6.25      1.90     0.17                             writev
+  5.88      2.06     0.16  4619660     0.00     0.00  getSizeMaillon
+  4.78      2.19     0.13 56519600     0.00     0.00  isAvailable
+  3.31      2.28     0.09 80796018     0.00     0.00  numToChar
+  3.31      2.37     0.09    25919     0.00     0.00  insertDico
+  2.57      2.44     0.07                             malloc
+  2.21      2.50     0.06                             __profile_frequency
+  1.84      2.55     0.05   121104     0.00     0.00  charToNum
+  1.84      2.60     0.05                             initDico
+  1.47      2.64     0.04  2309733     0.00     0.00  compareWord
+  0.92      2.66     0.03   121104     0.00     0.00  setCharnum
+  0.37      2.67     0.01    25920     0.00     0.00  stringToMaillon
+  0.37      2.68     0.01      194     0.00     0.00  displayWord
+  0.37      2.69     0.01                             __ctype_b_loc
+  0.37      2.70     0.01                             strdup
+  0.18      2.71     0.01                             _L_unlock_914
+  0.18      2.71     0.01                             _mid_memalign
+  0.18      2.72     0.01                             cfree
+  0.18      2.72     0.01                             feof
+  0.00      2.72     0.00    25920     0.00     0.00  addToDico
+  0.00      2.72     0.00    25920     0.00     0.00  generateMot_t
+  0.00      2.72     0.00    25920     0.00     0.00  next_word
+  0.00      2.72     0.00     3600     0.00     0.00  addHeadWord
+  0.00      2.72     0.00      193     0.00     0.00  addTailWord
+  0.00      2.72     0.00        1     0.00     0.01  displayDico
+  0.00      2.72     0.00        1     0.00     2.05  main
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+ 
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+           else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this 
+           function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+           the function in the gprof listing. If the index is
+           in parenthesis it shows where it would appear in
+           the gprof listing if it were to be printed.
+
+
+Copyright (C) 2012-2014 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+
+                     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 0.37% of 2.72 seconds
+
+index % time    self  children    called     name
+                0.00    2.05       1/1           __libc_start_main [2]
+[1]     75.4    0.00    2.05       1         main [1]
+                0.00    2.04   25920/25920       addToDico [3]
+                0.00    0.01       1/1           displayDico [23]
+                0.00    0.00   25920/25920       next_word [30]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]     75.4    0.00    2.05                 __libc_start_main [2]
+                0.00    2.05       1/1           main [1]
+-----------------------------------------------
+                0.00    2.04   25920/25920       main [1]
+[3]     75.0    0.00    2.04   25920         addToDico [3]
+                0.09    1.86   25919/25919       insertDico [4]
+                0.00    0.09   25920/25920       generateMot_t [15]
+-----------------------------------------------
+                0.09    1.86   25919/25919       addToDico [3]
+[4]     71.8    0.09    1.86   25919         insertDico [4]
+                0.04    1.63 2309733/2309733     compareWord [5]
+                0.19    0.00   22126/22126       incWord [11]
+                0.00    0.00    3600/3600        addHeadWord [31]
+                0.00    0.00     193/193         addTailWord [32]
+-----------------------------------------------
+                0.04    1.63 2309733/2309733     insertDico [4]
+[5]     61.5    0.04    1.63 2309733         compareWord [5]
+                0.22    1.41 4619466/4619660     maillonToString [6]
+-----------------------------------------------
+                0.00    0.00     194/4619660     displayWord [22]
+                0.22    1.41 4619466/4619660     compareWord [5]
+[6]     60.1    0.22    1.41 4619660         maillonToString [6]
+                0.30    0.43 52536218/80796018     getCharnum [7]
+                0.16    0.46 4619660/4619660     getSizeMaillon [8]
+                0.07    0.00 28259800/56519600     isAvailable [13]
+-----------------------------------------------
+                0.16    0.23 28259800/80796018     getSizeMaillon [8]
+                0.30    0.43 52536218/80796018     maillonToString [6]
+[7]     41.3    0.47    0.66 80796018         getCharnum [7]
+                0.57    0.00 80796018/80917122     getMask [9]
+                0.09    0.00 80796018/80796018     numToChar [14]
+-----------------------------------------------
+                0.16    0.46 4619660/4619660     maillonToString [6]
+[8]     22.7    0.16    0.46 4619660         getSizeMaillon [8]
+                0.16    0.23 28259800/80796018     getCharnum [7]
+                0.07    0.00 28259800/56519600     isAvailable [13]
+-----------------------------------------------
+                0.00    0.00  121104/80917122     setCharnum [17]
+                0.57    0.00 80796018/80917122     getCharnum [7]
+[9]     21.0    0.57    0.00 80917122         getMask [9]
+-----------------------------------------------
+                                                 <spontaneous>
+[10]    10.3    0.28    0.00                 _int_malloc [10]
+-----------------------------------------------
+                0.19    0.00   22126/22126       insertDico [4]
+[11]     7.0    0.19    0.00   22126         incWord [11]
+-----------------------------------------------
+                                                 <spontaneous>
+[12]     6.3    0.17    0.00                 writev [12]
+-----------------------------------------------
+                0.07    0.00 28259800/56519600     maillonToString [6]
+                0.07    0.00 28259800/56519600     getSizeMaillon [8]
+[13]     4.8    0.13    0.00 56519600         isAvailable [13]
+-----------------------------------------------
+                0.09    0.00 80796018/80796018     getCharnum [7]
+[14]     3.3    0.09    0.00 80796018         numToChar [14]
+-----------------------------------------------
+                0.00    0.09   25920/25920       addToDico [3]
+[15]     3.2    0.00    0.09   25920         generateMot_t [15]
+                0.01    0.08   25920/25920       stringToMaillon [16]
+-----------------------------------------------
+                0.01    0.08   25920/25920       generateMot_t [15]
+[16]     3.2    0.01    0.08   25920         stringToMaillon [16]
+                0.03    0.05  121104/121104      setCharnum [17]
+-----------------------------------------------
+                0.03    0.05  121104/121104      stringToMaillon [16]
+[17]     2.8    0.03    0.05  121104         setCharnum [17]
+                0.05    0.00  121104/121104      charToNum [20]
+                0.00    0.00  121104/80917122     getMask [9]
+-----------------------------------------------
+                                                 <spontaneous>
+[18]     2.6    0.07    0.00                 malloc [18]
+-----------------------------------------------
+                                                 <spontaneous>
+[19]     2.2    0.06    0.00                 __profile_frequency [19]
+-----------------------------------------------
+                0.05    0.00  121104/121104      setCharnum [17]
+[20]     1.8    0.05    0.00  121104         charToNum [20]
+-----------------------------------------------
+                                                 <spontaneous>
+[21]     1.8    0.05    0.00                 initDico [21]
+-----------------------------------------------
+                0.01    0.00     194/194         displayDico [23]
+[22]     0.4    0.01    0.00     194         displayWord [22]
+                0.00    0.00     194/4619660     maillonToString [6]
+-----------------------------------------------
+                0.00    0.01       1/1           main [1]
+[23]     0.4    0.00    0.01       1         displayDico [23]
+                0.01    0.00     194/194         displayWord [22]
+-----------------------------------------------
+                                                 <spontaneous>
+[24]     0.4    0.01    0.00                 strdup [24]
+-----------------------------------------------
+                                                 <spontaneous>
+[25]     0.4    0.01    0.00                 __ctype_b_loc [25]
+-----------------------------------------------
+                                                 <spontaneous>
+[26]     0.2    0.01    0.00                 cfree [26]
+-----------------------------------------------
+                                                 <spontaneous>
+[27]     0.2    0.01    0.00                 feof [27]
+-----------------------------------------------
+                                                 <spontaneous>
+[28]     0.2    0.01    0.00                 _L_unlock_914 [28]
+-----------------------------------------------
+                                                 <spontaneous>
+[29]     0.2    0.01    0.00                 _mid_memalign [29]
+-----------------------------------------------
+                0.00    0.00   25920/25920       main [1]
+[30]     0.0    0.00    0.00   25920         next_word [30]
+-----------------------------------------------
+                0.00    0.00    3600/3600        insertDico [4]
+[31]     0.0    0.00    0.00    3600         addHeadWord [31]
+-----------------------------------------------
+                0.00    0.00     193/193         insertDico [4]
+[32]     0.0    0.00    0.00     193         addTailWord [32]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index      A unique number given to each element of the table.
+                Index numbers are sorted numerically.
+                The index number is printed next to every function name so
+                it is easier to look up where the function is in the table.
+
+     % time     This is the percentage of the `total' time that was spent
+                in this function and its children.  Note that due to
+                different viewpoints, functions excluded by options, etc,
+                these numbers will NOT add up to 100%.
+
+     self       This is the total amount of time spent in this function.
+
+     children   This is the total amount of time propagated into this
+                function by its children.
+
+     called     This is the number of times the function was called.
+                If the function called itself recursively, the number
+                only includes non-recursive calls, and is followed by
+                a `+' and the number of recursive calls.
+
+     name       The name of the current function.  The index number is
+                printed after it.  If the function is a member of a
+                cycle, the cycle number is printed between the
+                function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self       This is the amount of time that was propagated directly
+                from the function into this parent.
+
+     children   This is the amount of time that was propagated from
+                the function's children into this parent.
+
+     called     This is the number of times this parent called the
+                function `/' the total number of times the function
+                was called.  Recursive calls to the function are not
+                included in the number after the `/'.
+
+     name       This is the name of the parent.  The parent's index
+                number is printed after it.  If the parent is a
+                member of a cycle, the cycle number is printed between
+                the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self       This is the amount of time that was propagated directly
+                from the child into the function.
+
+     children   This is the amount of time that was propagated from the
+                child's children to the function.
+
+     called     This is the number of times the function called
+                this child `/' the total number of times the child
+                was called.  Recursive calls by the child are not
+                listed in the number after the `/'.
+
+     name       This is the name of the child.  The child's index
+                number is printed after it.  If the child is a
+                member of a cycle, the cycle number is printed
+                between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+
+Copyright (C) 2012-2014 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+
+Index by function name
+
+  [28] _L_unlock_914          [23] displayDico             [6] maillonToString
+  [25] __ctype_b_loc          [22] displayWord             [1] main
+  [19] __profile_frequency    [27] feof                   [18] malloc
+  [10] _int_malloc            [15] generateMot_t          [30] next_word
+  [29] _mid_memalign           [7] getCharnum             [14] numToChar
+  [31] addHeadWord             [9] getMask                [17] setCharnum
+  [32] addTailWord             [8] getSizeMaillon         [24] strdup
+   [3] addToDico              [11] incWord                [16] stringToMaillon
+  [26] cfree                  [21] initDico               [12] writev
+  [20] charToNum               [4] insertDico
+   [5] compareWord            [13] isAvailable

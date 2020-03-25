@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
     current_col = 1;
     //test si bon nombre d'argument
     if (argc < 2){
-      printf("Vous avez oublié le nom du fichier d'entrée : \n\t%s <NOM_FICHIER>\n", argv[0]);
+      fprintf(stdout, "Vous avez oublié le nom du fichier d'entrée : \n\t%s <NOM_FICHIER>\n", argv[0]);
       exit(0);
     }
 

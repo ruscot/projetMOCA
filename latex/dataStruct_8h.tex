@@ -1,0 +1,40 @@
+\hypertarget{dataStruct_8h}{}\section{my\+\_\+header/data\+Struct.h File Reference}
+\label{dataStruct_8h}\index{my\+\_\+header/data\+Struct.\+h@{my\+\_\+header/data\+Struct.\+h}}
+
+
+Définition de toutes les différentes structures.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}globals.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmaillon__t}{maillon\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure \mbox{\hyperlink{structmaillon__t}{maillon\+\_\+t}} qui sert à stocker les lettres. Contient un attribut elem pour stocker le caractère et un attribut next pour le maillon suivant. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structemplacement__t}{emplacement\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure \mbox{\hyperlink{structemplacement__t}{emplacement\+\_\+t}} qui sert à stocker l\textquotesingle{}emplacement du mot dans le texte. Contient un attribut line pour la ligne du texte, un attribut colonne pour la colonne du texte et un attribut next pour l\textquotesingle{}emplacement suivant. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structmot__t}{mot\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure \mbox{\hyperlink{structmot__t}{mot\+\_\+t}} qui sert à stocker les mots. Contient un attribut tete\+\_\+mot pour stocker le début du mot, l\textquotesingle{}attribut queue\+\_\+mot pour la fin du mot, et tete\+\_\+liste et queue\+\_\+liste pour stocker l\textquotesingle{}emplacement du mot. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structdico}{dico}}
+\begin{DoxyCompactList}\small\item\em Structure dico qui sert à stocker un mot. Contient un attribut mot pour stocker le mot et un attribut next pour le mot suivant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{dataStruct_8h_a874efeb845cbe28f58dbfcb046378201}\label{dataStruct_8h_a874efeb845cbe28f58dbfcb046378201}} 
+typedef struct \mbox{\hyperlink{structmaillon__t}{maillon\+\_\+t}} {\bfseries maillon\+\_\+t}
+\item 
+\mbox{\Hypertarget{dataStruct_8h_af15540857af68a248d3a8885327ee529}\label{dataStruct_8h_af15540857af68a248d3a8885327ee529}} 
+typedef struct \mbox{\hyperlink{structemplacement__t}{emplacement\+\_\+t}} {\bfseries emplacement\+\_\+t}
+\item 
+\mbox{\Hypertarget{dataStruct_8h_a6926639a30009affa3a2d2793d29f52e}\label{dataStruct_8h_a6926639a30009affa3a2d2793d29f52e}} 
+typedef struct \mbox{\hyperlink{structmot__t}{mot\+\_\+t}} {\bfseries mot\+\_\+t}
+\item 
+\mbox{\Hypertarget{dataStruct_8h_a281b75d3a79fcdb88518c2d63d268692}\label{dataStruct_8h_a281b75d3a79fcdb88518c2d63d268692}} 
+typedef struct \mbox{\hyperlink{structdico}{dico}} {\bfseries dico}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Définition de toutes les différentes structures. 
+
